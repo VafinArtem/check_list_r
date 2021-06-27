@@ -6,9 +6,11 @@ import Main from "./components/main/main";
 const App = () => {
   return (
     <React.Fragment>
-      <Header />
-      <Main />
-      <Footer />
+      <div className={`body__wrapper`}>
+        <Header />
+        <Main />
+        <Footer />
+      </div>
     </React.Fragment>
   );
 };
