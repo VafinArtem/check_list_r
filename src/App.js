@@ -3,12 +3,12 @@ import Footer from "./components/footer/footers";
 import Header from "./components/header/header";
 import Main from "./components/main/main";
 
-const App = () => {
+const App = ({ cards }) => {
   return (
     <React.Fragment>
       <div className={`body__wrapper`}>
         <Header />
-        <Main />
+        <Main cards={cards} />
         <Footer />
       </div>
     </React.Fragment>

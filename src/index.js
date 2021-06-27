@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
+import { cards } from "./mocks/mocks";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App cards={cards} />
   </React.StrictMode>,
   document.getElementById("root")
 );

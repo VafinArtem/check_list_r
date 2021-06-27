@@ -1,7 +1,18 @@
-const Card = ({ text, id }) => {
+import { MAX_SYMBOLS } from "../../consts";
+import { limitDescription } from "../../utils/common";
+
+const Card = ({ text, id, isComplite }) => {
   return (
-    <li className="checklist__item checklist__item--complite">
-      <div className="checklist__inner checklist__inner--complite">
+    <li
+      className={`checklist__item ${
+        isComplite ? `checklist__item--complite` : ``
+      }`}
+    >
+      <div
+        className={`checklist__inner ${
+          isComplite ? `checklist__inner--complite` : ``
+        }`}
+      >
         <div className="checklist__controls">
           <button
             className="checklist__control checklist__control--edit"
@@ -17,12 +28,14 @@ const Card = ({ text, id }) => {
             type="checkbox"
             name={`check-${id}`}
             className="checklist__checkbox visually-hidden"
-            defaultChecked
+            defaultChecked={isComplite ? true : false}
           />
           <span className="checklist__check-box" />
-          <span className="checklist__name">{text}</span>
+          <span className="checklist__name">
+            {limitDescription(text, MAX_SYMBOLS)}
+          </span>
         </label>
-        {text.length > 110 ? (
+        {text.length > MAX_SYMBOLS ? (
           <button
             className="checklist__show-button"
             aria-label="Показать весь текст"
