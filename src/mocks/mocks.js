@@ -1,4 +1,4 @@
-export const cards = [
+export const cardsMock = [
   {
     id: 1,
     text: `Документ проходит проверку на валидность https://validator.w3.org/nu/`,

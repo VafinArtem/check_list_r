@@ -1,13 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import { configureStore } from "@reduxjs/toolkit";
 import App from "./App";
-import { cards } from "./mocks/mocks";
 import reportWebVitals from "./reportWebVitals";
+import mainReducer from "./store/main-reducer";
+
+const store = configureStore({
+  reducer: mainReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat(),
+});
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App cards={cards} />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById("root")
 );
 

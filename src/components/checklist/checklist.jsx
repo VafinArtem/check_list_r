@@ -1,7 +1,12 @@
+import { connect, useSelector } from "react-redux";
 import { ListTypes } from "../../consts";
+import { getCards } from "../../store/cards/selectors";
+import { NameSpace } from "../../store/main-reducer";
 import List from "../list/list";
 
-const CheckList = ({ cards }) => {
+const CheckList = () => {
+  const cards = useSelector((state) => state[NameSpace.CARDS].cards);
+
   const compliteCards = cards.filter((card) => card.isComplite);
   const notComplitedCards = cards.filter((card) => !card.isComplite);
   return (
