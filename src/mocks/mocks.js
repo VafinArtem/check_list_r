@@ -71,3 +71,5 @@ export const cardsMock = [
     isComplite: true,
   },
 ];
+
+export const projectsMock = [`default`, `maffin.pw`, `easylife`];

@@ -1,11 +1,19 @@
-import { connect, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ListTypes } from "../../consts";
-import { getCards } from "../../store/cards/selectors";
+import { fetchCards } from "../../store/api-actions";
 import { NameSpace } from "../../store/main-reducer";
 import List from "../list/list";
 
 const CheckList = () => {
+  const dispatch = useDispatch();
   const cards = useSelector((state) => state[NameSpace.CARDS].cards);
+
+  useEffect(() => {
+    if (!cards.length) {
+      dispatch(fetchCards());
+    }
+  }, [dispatch, cards]);
 
   const compliteCards = cards.filter((card) => card.isComplite);
   const notComplitedCards = cards.filter((card) => !card.isComplite);

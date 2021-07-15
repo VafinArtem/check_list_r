@@ -2,13 +2,22 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
+import { createAPI } from "./services/api";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import mainReducer from "./store/main-reducer";
 
+const api = createAPI();
+// () => store.dispatch(authorization(AuthorizationStatus.NO_AUTH)),
+
 const store = configureStore({
   reducer: mainReducer,
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat(),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      thunk: {
+        extraArgument: api,
+      },
+    }).concat(),
 });
 
 ReactDOM.render(
