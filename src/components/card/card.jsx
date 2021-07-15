@@ -1,10 +1,16 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { MAX_SYMBOLS } from "../../consts";
+import { editTextCard } from "../../store/api-actions";
 import CheckboxInput from "../checkbox-input/checkbox-input";
 import TextareaInput from "../textarea-input/textarea-input";
 
 const Card = ({ text, id, isComplite }) => {
-  const [fullComment, setFullComment] = useState(false);
+  const dispatch = useDispatch();
+
+  const [updatedText, setUpdatedText] = useState(text);
+
+  const [fullText, setFullText] = useState(false);
   const [editCard, setEditCard] = useState(false);
   return (
     <li
@@ -15,13 +21,20 @@ const Card = ({ text, id, isComplite }) => {
       <div
         className={`checklist__inner ${
           isComplite ? `checklist__inner--complite` : ``
-        } ${fullComment ? `checklist__inner--showed` : ``}`}
+        } ${fullText ? `checklist__inner--showed` : ``}`}
       >
         <div className="checklist__controls">
           <button
-            className="checklist__control checklist__control--edit"
+            className={`checklist__control  checklist__control--${
+              !editCard ? `edit` : `save`
+            }`}
             aria-label="Редактировать"
             onClick={() => {
+              if (editCard) {
+                if (updatedText !== text) {
+                  dispatch(editTextCard(id, updatedText));
+                }
+              }
               setEditCard(!editCard);
             }}
           />
@@ -35,19 +48,19 @@ const Card = ({ text, id, isComplite }) => {
             id={id}
             text={text}
             isComplite={isComplite}
-            fullComment={fullComment}
+            fullComment={fullText}
           />
         ) : (
-          <TextareaInput text={text} />
+          <TextareaInput text={text} setUpdatedText={setUpdatedText} />
         )}
         {text.length > MAX_SYMBOLS ? (
           <button
             className={`checklist__show-button ${
-              fullComment ? `checklist__show-button--showed` : ``
+              fullText ? `checklist__show-button--showed` : ``
             }`}
             aria-label="Показать весь текст"
             onClick={() => {
-              setFullComment(!fullComment);
+              setFullText(!fullText);
             }}
           />
         ) : (

@@ -3,7 +3,7 @@ import { MAX_SYMBOLS } from "../../consts";
 import { limitDescription } from "../../utils/common";
 import { fetchCompliteStatus } from "../../store/api-actions";
 
-const CheckboxInput = ({ text, fullComment, id, isComplite }) => {
+const CheckboxInput = ({ text, fullText, id, isComplite }) => {
   const dispatch = useDispatch();
 
   return (
@@ -17,7 +17,7 @@ const CheckboxInput = ({ text, fullComment, id, isComplite }) => {
       />
       <span className="checklist__check-box" />
       <span className="checklist__name">
-        {fullComment ? text : limitDescription(text, MAX_SYMBOLS)}
+        {fullText ? text : limitDescription(text, MAX_SYMBOLS)}
       </span>
     </label>
   );

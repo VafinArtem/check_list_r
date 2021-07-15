@@ -20,6 +20,12 @@ const cards = createReducer(initialState, (builder) => {
       { isComplite: action.payload.status }
     );
   });
+
+  builder.addCase(ActionType.UPDATE_CARD, (state, action) => {
+    console.log(action);
+    const currentIndexCard = findCardIndex(state.cards, action.payload.id);
+    state.cards[currentIndexCard] = action.payload;
+  });
 });
 
 export { cards };
