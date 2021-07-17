@@ -8,7 +8,7 @@ const TextareaInput = ({text, setUpdatedText}) => {
       <textarea
         name="card_text"
         className="checklist__edit"
-        defaultValue={text.trim()}
+        defaultValue={text ? text.trim() : ``}
         onInput={(evt) => setUpdatedText(evt.target.value)}
       />
     </label>
@@ -16,8 +16,8 @@ const TextareaInput = ({text, setUpdatedText}) => {
 };
 
 TextareaInput.propTypes = {
-  text: PropTypes.string.isRequired,
-  setUpdatedText: PropTypes.func.isRequired
+  text: PropTypes.string,
+  setUpdatedText: PropTypes.func
 };
 
 

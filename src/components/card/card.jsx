@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import PropTypes from 'prop-types';
 import {useDispatch} from "react-redux";
 import {MAX_SYMBOLS} from "../../consts";
-import {editTextCard} from '../../store/api-actions';
+import {editTextCard, removeCard} from '../../store/api-actions';
 import CheckboxInput from "../checkbox-input/checkbox-input";
 import TextareaInput from "../textarea-input/textarea-input";
 
@@ -10,7 +10,6 @@ const Card = ({text, id, isComplite}) => {
   const dispatch = useDispatch();
 
   const [updatedText, setUpdatedText] = useState(text);
-
   const [fullText, setFullText] = useState(false);
   const [editCard, setEditCard] = useState(false);
 
@@ -35,6 +34,7 @@ const Card = ({text, id, isComplite}) => {
           <button
             className="checklist__control checklist__control--delete"
             aria-label="Удалить"
+            onClick={() => dispatch(removeCard(id))}
           />
         </div>
         {!editCard ? (

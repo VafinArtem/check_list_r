@@ -1,6 +1,12 @@
 import React from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {changeAddCardStatus} from "../../store/actions";
+import {NameSpace} from "../../store/main-reducer";
 
 const NewElements = () => {
+  const dispatch = useDispatch();
+  const isAddCard = useSelector((state) => state[NameSpace.CARDS].isAddCard);
+
   return (
     <section className="top__add-items add-items">
       <h2 className="visually-hidden">Добавление элементов</h2>
@@ -43,7 +49,9 @@ const NewElements = () => {
         </form>
       </div>
       <div className="add-items__item">
-        <button className="add-items__button button">
+        <button className="add-items__button button" onClick={() => {
+          dispatch(changeAddCardStatus(!isAddCard));
+        }}>
           <svg className="button__icon" width={13} height={14}>
             <use xlinkHref="img/sprite.svg#icon-card" />
           </svg>

@@ -29,7 +29,7 @@ CheckboxInput.propTypes = {
   id: PropTypes.number.isRequired,
   isComplite: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired,
-  fullText: PropTypes.string.isRequired
+  fullText: PropTypes.bool.isRequired
 };
 
 export default CheckboxInput;

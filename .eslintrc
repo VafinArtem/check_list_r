@@ -20,4 +20,7 @@
       "version": "17"
     }
   }
+  // "rules": {
+  //   "react/jsx-uses-vars": "error"
+  // }
 }
