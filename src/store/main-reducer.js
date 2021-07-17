@@ -1,5 +1,5 @@
-import { combineReducers } from "redux";
-import { cards } from "./cards/cards";
+import {combineReducers} from "redux";
+import {cards} from "./cards/cards";
 
 export const NameSpace = {
   CARDS: `CARDS`,

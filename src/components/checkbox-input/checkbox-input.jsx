@@ -1,9 +1,10 @@
-import { useDispatch } from "react-redux";
-import { MAX_SYMBOLS } from "../../consts";
-import { limitDescription } from "../../utils/common";
-import { fetchCompliteStatus } from "../../store/api-actions";
+import React from "react";
+import {useDispatch} from "react-redux";
+import {MAX_SYMBOLS} from "../../consts";
+import {limitDescription} from "../../utils/common";
+import {fetchCompliteStatus} from "../../store/api-actions";
 
-const CheckboxInput = ({ text, fullText, id, isComplite }) => {
+const CheckboxInput = ({text, fullText, id, isComplite}) => {
   const dispatch = useDispatch();
 
   return (

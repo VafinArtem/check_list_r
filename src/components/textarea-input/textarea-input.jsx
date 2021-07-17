@@ -1,4 +1,6 @@
-const TextareaInput = ({ text, setUpdatedText }) => {
+import React from "react";
+
+const TextareaInput = ({text, setUpdatedText}) => {
   return (
     <label className="checklist__box checklist__box--edit">
       <span className="visually-hidden">Редактировать текст</span>

@@ -1,8 +1,9 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { ListTypes } from "../../consts";
-import { fetchCards } from "../../store/api-actions";
-import { NameSpace } from "../../store/main-reducer";
+import React from "react";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {ListTypes} from "../../consts";
+import {fetchCards} from "../../store/api-actions";
+import {NameSpace} from "../../store/main-reducer";
 import List from "../list/list";
 
 const CheckList = () => {

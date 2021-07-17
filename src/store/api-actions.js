@@ -1,4 +1,4 @@
-import { changeCompliteStatus, loadCards, updateCard } from "./actions";
+import {changeCompliteStatus, loadCards, updateCard} from "./actions";
 
 const ApiRoute = {
   CARDS: `/cards`,
@@ -9,7 +9,7 @@ const ApiRoute = {
 export const fetchCards = () => (dispatch, _getState, api) =>
   api
     .get(ApiRoute.CARDS)
-    .then(({ data }) => dispatch(loadCards(data)))
+    .then(({data}) => dispatch(loadCards(data)))
     .catch(() => {});
 
 export const fetchCompliteStatus = (id, status) => (dispatch, _getState, api) =>
@@ -22,6 +22,6 @@ export const fetchCompliteStatus = (id, status) => (dispatch, _getState, api) =>
 
 export const editTextCard = (id, text) => (dispatch, _getState, api) =>
   api
-    .post(`${ApiRoute.EDIT}/${id}`, { text })
-    .then(({ data }) => dispatch(updateCard(data, id)))
+    .post(`${ApiRoute.EDIT}/${id}`, {text})
+    .then(({data}) => dispatch(updateCard(data, id)))
     .catch(() => {});

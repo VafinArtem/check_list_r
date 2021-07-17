@@ -1,3 +1,5 @@
+import React from "react";
+
 const NewElements = () => {
   return (
     <section className="top__add-items add-items">

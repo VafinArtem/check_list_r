@@ -1,3 +1,4 @@
+import React from "react";
 import CheckList from "../checklist/checklist";
 import Filters from "../filters/filters";
 import NewElements from "../new-elements/new-elements";
