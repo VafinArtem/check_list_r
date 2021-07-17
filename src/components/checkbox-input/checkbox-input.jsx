@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import {useDispatch} from "react-redux";
 import {MAX_SYMBOLS} from "../../consts";
 import {limitDescription} from "../../utils/common";
@@ -22,6 +23,13 @@ const CheckboxInput = ({text, fullText, id, isComplite}) => {
       </span>
     </label>
   );
+};
+
+CheckboxInput.propTypes = {
+  id: PropTypes.number.isRequired,
+  isComplite: PropTypes.bool.isRequired,
+  text: PropTypes.string.isRequired,
+  fullText: PropTypes.string.isRequired
 };
 
 export default CheckboxInput;

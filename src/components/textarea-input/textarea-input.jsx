@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 const TextareaInput = ({text, setUpdatedText}) => {
   return (
@@ -13,5 +14,11 @@ const TextareaInput = ({text, setUpdatedText}) => {
     </label>
   );
 };
+
+TextareaInput.propTypes = {
+  text: PropTypes.string.isRequired,
+  setUpdatedText: PropTypes.func.isRequired
+};
+
 
 export default TextareaInput;

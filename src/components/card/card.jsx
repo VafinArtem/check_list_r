@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import PropTypes from 'prop-types';
 import {useDispatch} from "react-redux";
 import {MAX_SYMBOLS} from "../../consts";
 import {editTextCard} from '../../store/api-actions';
@@ -52,6 +53,12 @@ const Card = ({text, id, isComplite}) => {
       </div>
     </li>
   );
+};
+
+Card.propTypes = {
+  id: PropTypes.number.isRequired,
+  isComplite: PropTypes.bool.isRequired,
+  text: PropTypes.string.isRequired
 };
 
 export default Card;
