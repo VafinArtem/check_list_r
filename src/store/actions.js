@@ -6,7 +6,8 @@ export const ActionType = {
   UPDATE_CARD: `cards/update`,
   ADD_CARD: `cards/add`,
   CHANGE_ADD_CARD: `cards/changeAddStatus`,
-  DELETE_CARD: `cards/delete`
+  DELETE_CARD: `cards/delete`,
+  REDIRECT_TO_ROUTE: `site/redirectToRoute`,
 };
 
 export const loadCards = createAction(ActionType.LOAD_CARDS, (cards) => ({
