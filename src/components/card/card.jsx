@@ -13,6 +13,7 @@ const Card = ({text, id, isComplite}) => {
 
   const [fullText, setFullText] = useState(false);
   const [editCard, setEditCard] = useState(false);
+
   return (
     <li className={`checklist__item ${isComplite ? `checklist__item--complite` : ``}`}>
       <div className={`checklist__inner ${isComplite ? `checklist__inner--complite` : ``} ${fullText ? `checklist__inner--showed` : ``}`}>
@@ -41,7 +42,7 @@ const Card = ({text, id, isComplite}) => {
             id={id}
             text={text}
             isComplite={isComplite}
-            fullComment={fullText}
+            fullText={fullText}
           />
         ) : (
           <TextareaInput text={text} setUpdatedText={setUpdatedText} />
