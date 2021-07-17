@@ -8,6 +8,8 @@ export const ActionType = {
   CHANGE_ADD_CARD: `cards/changeAddStatus`,
   DELETE_CARD: `cards/delete`,
   REDIRECT_TO_ROUTE: `site/redirectToRoute`,
+  SIGN_IN: `auth/signIn`,
+  AUTHORIZATION: `auth/auth`
 };
 
 export const loadCards = createAction(ActionType.LOAD_CARDS, (cards) => ({
@@ -20,3 +22,5 @@ export const updateCard = createAction(ActionType.UPDATE_CARD, (card) => ({paylo
 export const changeAddCardStatus = createAction(ActionType.CHANGE_ADD_CARD, (status) => ({payload: status}));
 export const addCard = createAction(ActionType.ADD_CARD, (card) => ({payload: card}));
 export const deleteCard = createAction(ActionType.DELETE_CARD, (id) => ({payload: id}));
+export const signIn = createAction(ActionType.SIGN_IN, (answer) => ({payload: answer}));
+export const authorization = createAction(ActionType.AUTHORIZATION, (action) => ({payload: action}));

@@ -10,4 +10,9 @@ export const ListTypes = {
   IS_READY: `Готово`,
 };
 
+export const AuthorizationStatus = {
+  AUTH: `Auth`,
+  NO_AUTH: `NoAuth`
+};
+
 export const MAX_SYMBOLS = 110;

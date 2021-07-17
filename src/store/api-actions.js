@@ -1,4 +1,5 @@
-import {addCard, changeCompliteStatus, deleteCard, loadCards, updateCard} from "./actions";
+import {AuthorizationStatus} from "../consts";
+import {addCard, authorization, changeCompliteStatus, deleteCard, loadCards, signIn, updateCard} from "./actions";
 
 const ApiRoute = {
   CARDS: `/cards`,
@@ -6,6 +7,8 @@ const ApiRoute = {
   EDIT: `/cards/edit`,
   ADD: `/cards/add`,
   DELETE: `/cards/delete`,
+  SIGN_IN: `/auth/signin`,
+  LOGIN: `/auth/login`
 };
 
 export const fetchCards = () => (dispatch, _getState, api) =>
@@ -44,3 +47,15 @@ export const removeCard = (id) => (dispatch, _getState, api) =>
       dispatch(deleteCard(id));
     })
     .catch(() => {});
+
+export const newUser = (userData) => (dispatch, _getState, api) =>
+  api
+    .post(`${ApiRoute.SIGN_IN}`, userData)
+    .then(({data}) => dispatch(signIn(data)))
+    .catch(() => {});
+
+export const login = (userData) => (dispatch, _getState, api) => (
+  api.post(ApiRoute.LOGIN, userData)
+    .then(({data}) => dispatch(authorization(AuthorizationStatus.AUTH, data.avatar_url)))
+    .catch(() => {})
+);
