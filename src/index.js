@@ -2,10 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
+import {Router as BrowserRouter} from 'react-router-dom';
 import {createAPI} from "./services/api";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import mainReducer from "./store/main-reducer";
+import App from "./components/app/app";
+import browserHistory from "./browser-history";
 
 const api = createAPI();
 // () => store.dispatch(authorization(AuthorizationStatus.NO_AUTH)),
@@ -22,9 +24,11 @@ const store = configureStore({
 
 ReactDOM.render(
     <Provider store={store}>
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>
+      <BrowserRouter history={browserHistory}>
+        <React.StrictMode>
+          <App />
+        </React.StrictMode>
+      </BrowserRouter>
     </Provider>,
     document.getElementById(`root`)
 );
