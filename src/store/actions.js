@@ -23,5 +23,5 @@ export const changeAddCardStatus = createAction(ActionType.CHANGE_ADD_CARD, (sta
 export const addCard = createAction(ActionType.ADD_CARD, (card) => ({payload: card}));
 export const deleteCard = createAction(ActionType.DELETE_CARD, (id) => ({payload: id}));
 export const signIn = createAction(ActionType.SIGN_IN, (answer) => ({payload: answer}));
-export const authorization = createAction(ActionType.AUTHORIZATION, (action) => ({payload: action}));
+export const authorization = createAction(ActionType.AUTHORIZATION, (action, email) => ({payload: {action, email}}));
 export const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url) => ({payload: url}));

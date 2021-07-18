@@ -9,9 +9,13 @@ import mainReducer from "./store/main-reducer";
 import App from "./components/app/app";
 import {redirect} from "./store/middlewares/redirect";
 import browserHistory from "./browser-history";
+import {checkLogin} from "./store/api-actions";
+import {authorization} from "./store/actions";
+import {AuthorizationStatus} from "./consts";
 
-const api = createAPI();
-// () => store.dispatch(authorization(AuthorizationStatus.NO_AUTH)),
+const api = createAPI(
+    () => store.dispatch(authorization(AuthorizationStatus.NO_AUTH))
+);
 
 const store = configureStore({
   reducer: mainReducer,
@@ -22,6 +26,8 @@ const store = configureStore({
       },
     }).concat(redirect),
 });
+
+store.dispatch(checkLogin());
 
 ReactDOM.render(
     <Provider store={store}>

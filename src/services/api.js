@@ -10,7 +10,7 @@ const HttpCode = {
   SUCCES: 200,
 };
 
-export const createAPI = () => {
+export const createAPI = (onUnauthorized) => {
   const api = axios.create({
     baseURL: BACKEND_URL,
     timeout: REQUEST_TIMEOUT,
@@ -26,6 +26,12 @@ export const createAPI = () => {
         // config: { method, url },
       },
     } = err;
+
+    if (status === HttpCode.UNAUTHORIZED) {
+      onUnauthorized();
+
+      throw err;
+    }
 
     if (status === HttpCode.NOT_FOUND) {
       throw status;

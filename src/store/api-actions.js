@@ -45,7 +45,6 @@ export const removeCard = (id) => (dispatch, _getState, api) =>
   api
     .delete(`${ApiRoute.DELETE}/${id}`)
     .then(() => {
-      // eslint-disable-next-line no-console
       dispatch(deleteCard(id));
     })
     .catch(() => {});
@@ -58,17 +57,25 @@ export const newUser = (userData) => (dispatch, _getState, api) =>
 
 export const login = (userData) => (dispatch, _getState, api) => (
   api.post(ApiRoute.LOGIN, userData)
-    .then(() => dispatch(authorization({auth: AuthorizationStatus.AUTH, email: userData.email})))
+    .then(() => dispatch(authorization(AuthorizationStatus.AUTH, userData.email)))
     .then(() => dispatch(redirectToRoute(Url.MAIN)))
     .catch(() => {})
 );
 
 export const logout = () => (dispatch, _getState, api) => (
   api.get(ApiRoute.LOGOUT)
-    .then(() => dispatch(authorization({auth: AuthorizationStatus.NO_AUTH, email: ``})))
+    .then(() => dispatch(authorization(AuthorizationStatus.NO_AUTH)))
     .then(() => {
       if (browserHistory.location.pathname !== Url.MAIN) {
         dispatch(redirectToRoute(Url.MAIN));
       }
     })
+);
+
+export const checkLogin = () => (dispatch, _getState, api) => (
+  api.get(ApiRoute.LOGIN)
+    .then(({data}) => {
+      dispatch(authorization(AuthorizationStatus.AUTH, data.email));
+    })
+    .catch(() => {})
 );
