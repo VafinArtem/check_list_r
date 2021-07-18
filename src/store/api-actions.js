@@ -1,5 +1,6 @@
-import {AuthorizationStatus} from "../consts";
-import {addCard, authorization, changeCompliteStatus, deleteCard, loadCards, signIn, updateCard} from "./actions";
+import browserHistory from "../browser-history";
+import {AuthorizationStatus, Url} from "../consts";
+import {addCard, authorization, changeCompliteStatus, deleteCard, loadCards, redirectToRoute, signIn, updateCard} from "./actions";
 
 const ApiRoute = {
   CARDS: `/cards`,
@@ -8,7 +9,8 @@ const ApiRoute = {
   ADD: `/cards/add`,
   DELETE: `/cards/delete`,
   SIGN_IN: `/auth/signin`,
-  LOGIN: `/auth/login`
+  LOGIN: `/auth/login`,
+  LOGOUT: `/auth/logout`
 };
 
 export const fetchCards = () => (dispatch, _getState, api) =>
@@ -56,6 +58,17 @@ export const newUser = (userData) => (dispatch, _getState, api) =>
 
 export const login = (userData) => (dispatch, _getState, api) => (
   api.post(ApiRoute.LOGIN, userData)
-    .then(({data}) => dispatch(authorization(AuthorizationStatus.AUTH, data.avatar_url)))
+    .then(() => dispatch(authorization({auth: AuthorizationStatus.AUTH, email: userData.email})))
+    .then(() => dispatch(redirectToRoute(Url.MAIN)))
     .catch(() => {})
+);
+
+export const logout = () => (dispatch, _getState, api) => (
+  api.get(ApiRoute.LOGOUT)
+    .then(() => dispatch(authorization({auth: AuthorizationStatus.NO_AUTH, email: ``})))
+    .then(() => {
+      if (browserHistory.location.pathname !== Url.MAIN) {
+        dispatch(redirectToRoute(Url.MAIN));
+      }
+    })
 );
