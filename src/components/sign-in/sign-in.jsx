@@ -1,9 +1,19 @@
-import React, {useRef} from "react";
-import {useDispatch} from "react-redux";
+import React, {useEffect, useRef, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {ToastTypes} from "../../consts";
+import {resetMessage} from "../../store/actions";
 import {newUser} from "../../store/api-actions";
+import {NameSpace} from "../../store/main-reducer";
+import Toast from "../toast/toast";
 
 const SignIn = () => {
   const dispatch = useDispatch();
+
+  const showAuthorizationMessage = useSelector((state) => state[NameSpace.AUTH].showAuthorizationMessage);
+  const authorizationMessage = useSelector((state) => state[NameSpace.AUTH].authorizationMessage);
+
+  const [showToast, setShowToast] = useState(false);
+
   const loginRef = useRef();
   const passwordRef = useRef();
   const rePasswordRef = useRef();
@@ -23,8 +33,16 @@ const SignIn = () => {
     }
   };
 
+  useEffect(() => {
+    if (showAuthorizationMessage) {
+      setShowToast(true);
+      dispatch(resetMessage());
+    }
+  }, [showAuthorizationMessage]);
+
   return (
     <div className="login__wrapper">
+      {showToast ? <Toast message={authorizationMessage} type={ToastTypes.ERROR} show={showToast} setShow={setShowToast} hideTimer={3000} /> : ``}
       <h2 className="login__title">Регистрация</h2>
       <form action="/" className="login__form" onSubmit={handleSubmit}>
         <label className="login__input-wrapper">

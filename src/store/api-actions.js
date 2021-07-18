@@ -1,6 +1,6 @@
 import browserHistory from "../browser-history";
 import {AuthorizationStatus, Url} from "../consts";
-import {addCard, authorization, changeCompliteStatus, deleteCard, loadCards, redirectToRoute, signIn, updateCard} from "./actions";
+import {addCard, authorization, authorizationFailed, changeCompliteStatus, deleteCard, loadCards, redirectToRoute, signIn, updateCard} from "./actions";
 
 const ApiRoute = {
   CARDS: `/cards`,
@@ -52,13 +52,25 @@ export const removeCard = (id) => (dispatch, _getState, api) =>
 export const newUser = (userData) => (dispatch, _getState, api) =>
   api
     .post(`${ApiRoute.SIGN_IN}`, userData)
-    .then(({data}) => dispatch(signIn(data)))
+    .then(({data}) => {
+      if (data.error) {
+        dispatch(authorizationFailed(data.error));
+      } else {
+        dispatch(signIn(data));
+      }
+    })
     .catch(() => {});
 
 export const login = (userData) => (dispatch, _getState, api) => (
   api.post(ApiRoute.LOGIN, userData)
-    .then(() => dispatch(authorization(AuthorizationStatus.AUTH, userData.email)))
-    .then(() => dispatch(redirectToRoute(Url.MAIN)))
+    .then(({data}) => {
+      if (data.error) {
+        dispatch(authorizationFailed(data.error));
+      } else {
+        dispatch(authorization(AuthorizationStatus.AUTH, userData.email));
+        dispatch(redirectToRoute(Url.MAIN));
+      }
+    })
     .catch(() => {})
 );
 

@@ -8,8 +8,10 @@ export const ActionType = {
   CHANGE_ADD_CARD: `cards/changeAddStatus`,
   DELETE_CARD: `cards/delete`,
   REDIRECT_TO_ROUTE: `site/redirect`,
+  RESET_MESSAGE: `auth/resetMessage`,
   SIGN_IN: `auth/signIn`,
-  AUTHORIZATION: `auth/auth`
+  AUTHORIZATION: `auth/auth`,
+  AUTHORIZATION_FAIL: `auth/authFail`
 };
 
 export const loadCards = createAction(ActionType.LOAD_CARDS, (cards) => ({
@@ -23,5 +25,7 @@ export const changeAddCardStatus = createAction(ActionType.CHANGE_ADD_CARD, (sta
 export const addCard = createAction(ActionType.ADD_CARD, (card) => ({payload: card}));
 export const deleteCard = createAction(ActionType.DELETE_CARD, (id) => ({payload: id}));
 export const signIn = createAction(ActionType.SIGN_IN, (answer) => ({payload: answer}));
+export const resetMessage = createAction(ActionType.RESET_MESSAGE);
 export const authorization = createAction(ActionType.AUTHORIZATION, (action, email) => ({payload: {action, email}}));
+export const authorizationFailed = createAction(ActionType.AUTHORIZATION_FAIL, (error) => ({payload: error}));
 export const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url) => ({payload: url}));
