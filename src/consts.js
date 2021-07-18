@@ -15,4 +15,10 @@ export const AuthorizationStatus = {
   NO_AUTH: `NoAuth`
 };
 
+export const ToastTypes = {
+  ERROR: `ERROR`,
+  DEFAULT: `DEFAULT`,
+  SUCCES: `SUCCES`
+};
+
 export const MAX_SYMBOLS = 110;

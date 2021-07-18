@@ -3,9 +3,9 @@ import {ActionType} from "../actions";
 
 const initialState = {
   authorizationStatus: false,
-  userName: undefined,
-  signIn: undefined,
-  signInError: undefined
+  userName: ``,
+  showAuthorizationMessage: false,
+  authorizationMessage: ``,
 };
 
 const auth = createReducer(initialState, (builder) => {
@@ -14,8 +14,15 @@ const auth = createReducer(initialState, (builder) => {
   });
 
   builder.addCase(ActionType.AUTHORIZATION, (state, {payload}) => {
-    state.authorizationStatus = payload.auth;
+    state.authorizationStatus = payload.action;
     state.userName = payload.email;
+  });
+  builder.addCase(ActionType.AUTHORIZATION_FAIL, (state, {payload}) => {
+    state.showAuthorizationMessage = true;
+    state.authorizationMessage = payload;
+  });
+  builder.addCase(ActionType.RESET_MESSAGE, (state) => {
+    state.showAuthorizationMessage = false;
   });
 });
 
