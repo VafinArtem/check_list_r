@@ -9,17 +9,17 @@ import Toast from "../toast/toast";
 const LogIn = () => {
   const dispatch = useDispatch();
 
-  const showAuthorizationMessage = useSelector((state) => state[NameSpace.AUTH].showAuthorizationMessage);
+  const showErrorAuthorizationMessage = useSelector((state) => state[NameSpace.AUTH].showErrorAuthorizationMessage);
   const authorizationMessage = useSelector((state) => state[NameSpace.AUTH].authorizationMessage);
 
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
-    if (showAuthorizationMessage) {
+    if (showErrorAuthorizationMessage) {
       setShowToast(true);
       dispatch(resetMessage());
     }
-  }, [showAuthorizationMessage]);
+  }, [showErrorAuthorizationMessage]);
 
   const loginRef = useRef();
   const passwordRef = useRef();

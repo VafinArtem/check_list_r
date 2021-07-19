@@ -56,7 +56,7 @@ export const newUser = (userData) => (dispatch, _getState, api) =>
       if (data.error) {
         dispatch(authorizationFailed(data.error));
       } else {
-        dispatch(signIn(data));
+        dispatch(signIn(data.succes));
       }
     })
     .catch(() => {});

@@ -9,10 +9,13 @@ import Toast from "../toast/toast";
 const SignIn = () => {
   const dispatch = useDispatch();
 
-  const showAuthorizationMessage = useSelector((state) => state[NameSpace.AUTH].showAuthorizationMessage);
+  const showErrorAuthorizationMessage = useSelector((state) => state[NameSpace.AUTH].showErrorAuthorizationMessage);
   const authorizationMessage = useSelector((state) => state[NameSpace.AUTH].authorizationMessage);
+  const showSuccesAuthorizationMessage = useSelector((state) => state[NameSpace.AUTH].showSuccesAuthorizationMessage);
 
   const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState(``);
+  const [toastType, setToastType] = useState(``);
 
   const loginRef = useRef();
   const passwordRef = useRef();
@@ -28,21 +31,33 @@ const SignIn = () => {
       };
       dispatch(newUser(regData));
     } else {
-      // eslint-disable-next-line no-console
-      console.log(`Пароли не совпадают`);
+      setToastMessage(`Пароли не совпадают`);
+      setToastType(ToastTypes.ERROR);
+      setShowToast(true);
     }
   };
 
   useEffect(() => {
-    if (showAuthorizationMessage) {
+    if (showErrorAuthorizationMessage) {
+      setToastMessage(authorizationMessage);
+      setToastType(ToastTypes.ERROR);
       setShowToast(true);
       dispatch(resetMessage());
     }
-  }, [showAuthorizationMessage]);
+  }, [showErrorAuthorizationMessage]);
+
+  useEffect(() => {
+    if (showSuccesAuthorizationMessage) {
+      setToastMessage(authorizationMessage);
+      setToastType(ToastTypes.SUCCES);
+      setShowToast(true);
+      dispatch(resetMessage());
+    }
+  }, [showSuccesAuthorizationMessage]);
 
   return (
     <div className="login__wrapper">
-      {showToast ? <Toast message={authorizationMessage} type={ToastTypes.ERROR} show={showToast} setShow={setShowToast} hideTimer={3000} /> : ``}
+      {showToast ? <Toast message={toastMessage} type={toastType} show={showToast} setShow={setShowToast} hideTimer={3000} /> : ``}
       <h2 className="login__title">Регистрация</h2>
       <form action="/" className="login__form" onSubmit={handleSubmit}>
         <label className="login__input-wrapper">
