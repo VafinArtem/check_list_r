@@ -29,9 +29,11 @@ export const RegularExp = {
 };
 
 export const MIN_PASSWORD_LENGTH = 3;
+export const MIN_EMAIL_LENGTH = 3;
 
 export const ValidationMessages = {
-  PASSWORD_LENGTH: `Минимальная длина пароля ${MIN_PASSWORD_LENGTH} символов`,
+  PASSWORD_LENGTH: `Минимальная длина пароля - ${MIN_PASSWORD_LENGTH} символов`,
+  EMAIL_LENGTH: `Минимальная длина e-mail - ${MIN_EMAIL_LENGTH} символа`,
   WRONG_EMAIL: `Не правильный формат e-mail`,
   MISMATCH_PASSWORDS: `Пароли не совпадают`
 };
