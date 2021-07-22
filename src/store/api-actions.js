@@ -1,6 +1,6 @@
 import browserHistory from "../browser-history";
 import {AuthorizationStatus, Url} from "../consts";
-import {addCard, authorization, authorizationFailed, changeCompliteStatus, deleteCard, loadCards, redirectToRoute, signIn, updateCard} from "./actions";
+import {addCard, authorization, authorizationFailed, changeCompliteStatus, changeLoadStatus, deleteCard, loadCards, redirectToRoute, signIn, updateCard} from "./actions";
 
 const ApiRoute = {
   CARDS: `/cards`,
@@ -69,6 +69,7 @@ export const login = (userData) => (dispatch, _getState, api) => (
       } else {
         dispatch(authorization(AuthorizationStatus.AUTH, userData.email));
         dispatch(redirectToRoute(Url.MAIN));
+        dispatch(changeLoadStatus());
       }
     })
     .catch(() => {})
@@ -78,6 +79,7 @@ export const logout = () => (dispatch, _getState, api) => (
   api.get(ApiRoute.LOGOUT)
     .then(() => dispatch(authorization(AuthorizationStatus.NO_AUTH)))
     .then(() => {
+      dispatch(changeLoadStatus());
       if (browserHistory.location.pathname !== Url.MAIN) {
         dispatch(redirectToRoute(Url.MAIN));
       }

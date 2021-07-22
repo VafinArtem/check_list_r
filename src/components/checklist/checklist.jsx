@@ -9,12 +9,13 @@ import List from "../list/list";
 const CheckList = () => {
   const dispatch = useDispatch();
   const cards = useSelector((state) => state[NameSpace.CARDS].cards);
+  const isLoaded = useSelector((state) => state[NameSpace.CARDS].isLoaded);
 
   useEffect(() => {
-    if (!cards.length) {
+    if (!isLoaded) {
       dispatch(fetchCards());
     }
-  }, [dispatch, cards]);
+  }, [dispatch, isLoaded]);
 
   const compliteCards = cards.filter((card) => card.isComplite);
   const notComplitedCards = cards.filter((card) => !card.isComplite);

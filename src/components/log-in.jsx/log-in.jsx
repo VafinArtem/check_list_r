@@ -35,7 +35,7 @@ const LogIn = () => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-    if (validate.passwordlength && validate.emailRegExp && validate.emailLength) {
+    if (validate.passwordLength && validate.emailRegExp && validate.emailLength) {
       dispatch(login({
         email: loginRef.current.value,
         password: passwordRef.current.value,

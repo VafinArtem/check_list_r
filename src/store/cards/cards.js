@@ -3,7 +3,8 @@ import {ActionType} from "../actions";
 
 const initialState = {
   cards: [],
-  isAddCard: false
+  isAddCard: false,
+  isLoaded: false,
 };
 
 const findCardIndex = (cards, id) => cards.findIndex((card) => card.id === id);
@@ -11,6 +12,7 @@ const findCardIndex = (cards, id) => cards.findIndex((card) => card.id === id);
 const cards = createReducer(initialState, (builder) => {
   builder.addCase(ActionType.LOAD_CARDS, (state, action) => {
     state.cards = action.payload;
+    state.isLoaded = true;
   });
 
   builder.addCase(ActionType.COMPLITE_CARD, (state, action) => {
@@ -35,6 +37,9 @@ const cards = createReducer(initialState, (builder) => {
   builder.addCase(ActionType.DELETE_CARD, (state, action) => {
     const currentIndexCard = findCardIndex(state.cards, action.payload);
     state.cards.splice(currentIndexCard, 1);
+  });
+  builder.addCase(ActionType.CHANGE_LOAD_STATUS, (state) => {
+    state.isLoaded = false;
   });
 });
 

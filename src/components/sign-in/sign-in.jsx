@@ -30,7 +30,7 @@ const SignIn = () => {
 
   const handleInput = () => {
     setValidate({
-      passwordLength: passwordRef.current.value.length >= MIN_PASSWORD_LENGTH,
+      passwordlength: passwordRef.current.value.length >= MIN_PASSWORD_LENGTH,
       passwordMatch: passwordRef.current.value === rePasswordRef.current.value,
       emailLength: loginRef.current.value.length !== 0,
       emailRegExp: loginRef.current.value.match(RegularExp.EMAIL) !== null,
