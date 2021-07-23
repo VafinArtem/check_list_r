@@ -1,14 +1,21 @@
-import React from "react";
+import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {AuthorizationStatus, ToastTypes} from "../../consts";
 import {changeAddCardStatus} from "../../store/actions";
 import {NameSpace} from "../../store/main-reducer";
+import Toast from "../toast/toast";
 
 const NewElements = () => {
   const dispatch = useDispatch();
   const isAddCard = useSelector((state) => state[NameSpace.CARDS].isAddCard);
+  const authorizationStatus = useSelector((state) => state[NameSpace.AUTH].authorizationStatus);
+
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState(``);
 
   return (
     <section className="top__add-items add-items">
+      {showToast ? <Toast message={toastMessage} type={ToastTypes.ERROR} show={showToast} setShow={setShowToast} hideTimer={3000} /> : ``}
       <h2 className="visually-hidden">Добавление элементов</h2>
       <div className="add-items__item">
         <button className="add-items__button button">
@@ -50,7 +57,12 @@ const NewElements = () => {
       </div>
       <div className="add-items__item">
         <button className="add-items__button button" onClick={() => {
-          dispatch(changeAddCardStatus(!isAddCard));
+          if (authorizationStatus === AuthorizationStatus.AUTH) {
+            dispatch(changeAddCardStatus(!isAddCard));
+          } else {
+            setToastMessage(`Добавление карточки доступно только после регистрации`);
+            setShowToast(true);
+          }
         }}>
           <svg className="button__icon" width={13} height={14}>
             <use xlinkHref="img/sprite.svg#icon-card" />

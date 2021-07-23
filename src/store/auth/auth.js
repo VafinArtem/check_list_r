@@ -1,8 +1,9 @@
 import {createReducer} from "@reduxjs/toolkit";
+import {AuthorizationStatus} from "../../consts";
 import {ActionType} from "../actions";
 
 const initialState = {
-  authorizationStatus: false,
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
   userName: ``,
   showErrorAuthorizationMessage: false,
   showSuccesAuthorizationMessage: false,

@@ -3,11 +3,11 @@ import {AuthorizationStatus, Url} from "../consts";
 import {addCard, authorization, authorizationFailed, changeCompliteStatus, changeLoadStatus, deleteCard, loadCards, redirectToRoute, signIn, updateCard} from "./actions";
 
 const ApiRoute = {
-  CARDS: `/cards`,
-  COMPLITE: `/cards/complite`,
-  EDIT: `/cards/edit`,
-  ADD: `/cards/add`,
-  DELETE: `/cards/delete`,
+  CARDS: `/todos`,
+  COMPLITE: `/todos/complite`,
+  EDIT: `/todos/edit`,
+  ADD: `/todos/add`,
+  DELETE: `/todos/delete`,
   SIGN_IN: `/auth/signin`,
   LOGIN: `/auth/login`,
   LOGOUT: `/auth/logout`

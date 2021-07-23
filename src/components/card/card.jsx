@@ -1,13 +1,14 @@
 import React, {useState} from "react";
 import PropTypes from 'prop-types';
-import {useDispatch} from "react-redux";
-import {MAX_SYMBOLS} from "../../consts";
-import {editTextCard, removeCard} from '../../store/api-actions';
+import {AuthorizationStatus, MAX_SYMBOLS} from "../../consts";
 import CheckboxInput from "../checkbox-input/checkbox-input";
 import TextareaInput from "../textarea-input/textarea-input";
+import CardControls from "../card-controls/card-controls";
+import {NameSpace} from "../../store/main-reducer";
+import {useSelector} from "react-redux";
 
 const Card = ({text, id, isComplite}) => {
-  const dispatch = useDispatch();
+  const authorizationStatus = useSelector((state) => state[NameSpace.AUTH].authorizationStatus);
 
   const [updatedText, setUpdatedText] = useState(text);
   const [fullText, setFullText] = useState(false);
@@ -16,27 +17,13 @@ const Card = ({text, id, isComplite}) => {
   return (
     <li className={`checklist__item ${isComplite ? `checklist__item--complite` : ``}`}>
       <div className={`checklist__inner ${isComplite ? `checklist__inner--complite` : ``} ${fullText ? `checklist__inner--showed` : ``}`}>
-        <div className="checklist__controls">
-          <button
-            className={`checklist__control  checklist__control--${
-              !editCard ? `edit` : `save`
-            }`}
-            aria-label="Редактировать"
-            onClick={() => {
-              if (editCard) {
-                if (updatedText !== text) {
-                  dispatch(editTextCard(id, updatedText));
-                }
-              }
-              setEditCard(!editCard);
-            }}
-          />
-          <button
-            className="checklist__control checklist__control--delete"
-            aria-label="Удалить"
-            onClick={() => dispatch(removeCard(id))}
-          />
-        </div>
+        {authorizationStatus === AuthorizationStatus.AUTH ? <CardControls
+          editCard={editCard}
+          updatedText={updatedText}
+          text={text}
+          setEditCard={setEditCard}
+          id={id}
+        /> : ``}
         {!editCard ? (
           <CheckboxInput
             id={id}
