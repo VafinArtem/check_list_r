@@ -2,23 +2,31 @@ import React from "react";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {ListTypes} from "../../consts";
-import {fetchCards} from "../../store/api-actions";
+import {fetchCards, fetchProjects} from "../../store/api-actions";
 import {NameSpace} from "../../store/main-reducer";
+import {selectCompliteCards, selectNotCompliteCards} from "../../store/selectors/selectors";
 import List from "../list/list";
 
 const CheckList = () => {
   const dispatch = useDispatch();
-  const cards = useSelector((state) => state[NameSpace.CARDS].cards);
-  const isLoaded = useSelector((state) => state[NameSpace.CARDS].isLoaded);
+  const compliteCards = useSelector(selectCompliteCards);
+  const notComplitedCards = useSelector(selectNotCompliteCards);
+  const projectId = useSelector((state) => state[NameSpace.PROJECTS].currenProjectsId);
+  const isCardsLoaded = useSelector((state) => state[NameSpace.CARDS].isLoaded);
+  const isProjectsLoaded = useSelector((state) => state[NameSpace.PROJECTS].isLoaded);
 
   useEffect(() => {
-    if (!isLoaded) {
-      dispatch(fetchCards());
+    if (!isProjectsLoaded) {
+      dispatch(fetchProjects());
     }
-  }, [dispatch, isLoaded]);
+  }, [dispatch, isProjectsLoaded]);
 
-  const compliteCards = cards.filter((card) => card.isComplite);
-  const notComplitedCards = cards.filter((card) => !card.isComplite);
+  useEffect(() => {
+    if (isProjectsLoaded && !isCardsLoaded) {
+      dispatch(fetchCards(projectId));
+    }
+  }, [dispatch, isCardsLoaded, isProjectsLoaded]);
+
   return (
     <section className="main__checklist checklist">
       <h2 className="checklist__title visually-hidden">Проект: maffin.pw</h2>

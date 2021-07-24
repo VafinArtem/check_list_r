@@ -14,7 +14,6 @@ const cards = createReducer(initialState, (builder) => {
     state.cards = action.payload;
     state.isLoaded = true;
   });
-
   builder.addCase(ActionType.COMPLITE_CARD, (state, action) => {
     const currentIndexCard = findCardIndex(state.cards, action.payload.id);
     state.cards[currentIndexCard] = Object.assign(

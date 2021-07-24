@@ -1,18 +1,12 @@
-import React, {useEffect} from "react";
+import React, {useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchProjects} from "../../store/api-actions";
+import {setProject} from "../../store/actions";
 import {NameSpace} from "../../store/main-reducer";
 
 const Filters = () => {
   const dispatch = useDispatch();
   const projects = useSelector((state) => state[NameSpace.PROJECTS].projects);
-  const isLoaded = useSelector((state) => state[NameSpace.PROJECTS].isLoaded);
-
-  useEffect(() => {
-    if (!isLoaded) {
-      dispatch(fetchProjects());
-    }
-  }, [dispatch, isLoaded]);
+  const projectRef = useRef();
 
   return (
     <section className="top__filters filters">
@@ -20,7 +14,11 @@ const Filters = () => {
       <form className="filters__form">
         <label className="filters__item">
           <span className="visually-hidden">Проект</span>
-          <select name="project" className="filters__input">
+          <select
+            name="project"
+            className="filters__input"
+            ref={projectRef}
+            onChange={() => dispatch(setProject(projectRef.current.value))}>
             {projects.map(({name, id}) => <option value={id} key={id}>{name}</option>)}
             {/* <option>maffin.pw</option>
             <option>amrita-dent</option> */}

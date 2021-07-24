@@ -15,9 +15,9 @@ const ApiRoute = {
   LOGOUT: `/auth/logout`
 };
 
-export const fetchCards = () => (dispatch, _getState, api) =>
+export const fetchCards = (projectId) => (dispatch, _getState, api) =>
   api
-    .get(ApiRoute.CARDS)
+    .get(`${ApiRoute.CARDS}/${projectId}`)
     .then(({data}) => dispatch(loadCards(data)))
     .catch(() => {});
 

@@ -10,6 +10,7 @@ export const ActionType = {
   DELETE_CARD: `cards/delete`,
   LOAD_PROJECTS: `projects/load`,
   ADD_PROJECT: `projects/add`,
+  SET_PROJECT: `project/set`,
   REDIRECT_TO_ROUTE: `site/redirect`,
   RESET_MESSAGE: `auth/resetMessage`,
   SIGN_IN: `auth/signIn`,
@@ -31,3 +32,4 @@ export const authorization = createAction(ActionType.AUTHORIZATION, (action, ema
 export const authorizationFailed = createAction(ActionType.AUTHORIZATION_FAIL, (error) => ({payload: error}));
 export const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url) => ({payload: url}));
 export const changeLoadStatus = createAction(ActionType.CHANGE_LOAD_STATUS);
+export const setProject = createAction(ActionType.SET_PROJECT, (id) => ({payload: id}));
