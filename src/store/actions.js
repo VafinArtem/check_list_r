@@ -8,6 +8,8 @@ export const ActionType = {
   ADD_CARD: `cards/add`,
   CHANGE_ADD_CARD: `cards/changeAddStatus`,
   DELETE_CARD: `cards/delete`,
+  LOAD_PROJECTS: `projects/load`,
+  ADD_PROJECT: `projects/add`,
   REDIRECT_TO_ROUTE: `site/redirect`,
   RESET_MESSAGE: `auth/resetMessage`,
   SIGN_IN: `auth/signIn`,
@@ -15,15 +17,13 @@ export const ActionType = {
   AUTHORIZATION_FAIL: `auth/authFail`
 };
 
-export const loadCards = createAction(ActionType.LOAD_CARDS, (cards) => ({
-  payload: cards,
-}));
-
+export const loadCards = createAction(ActionType.LOAD_CARDS, (cards) => ({payload: cards}));
+export const loadProjects = createAction(ActionType.LOAD_PROJECTS, (projects) => ({payload: projects}));
 export const changeCompliteStatus = createAction(ActionType.COMPLITE_CARD, (id, status) => ({payload: {id, status}}));
-
 export const updateCard = createAction(ActionType.UPDATE_CARD, (card) => ({payload: card}));
 export const changeAddCardStatus = createAction(ActionType.CHANGE_ADD_CARD, (status) => ({payload: status}));
 export const addCard = createAction(ActionType.ADD_CARD, (card) => ({payload: card}));
+export const addProject = createAction(ActionType.ADD_PROJECT, (project) => ({payload: project}));
 export const deleteCard = createAction(ActionType.DELETE_CARD, (id) => ({payload: id}));
 export const signIn = createAction(ActionType.SIGN_IN, (answer) => ({payload: answer}));
 export const resetMessage = createAction(ActionType.RESET_MESSAGE);

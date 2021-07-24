@@ -1,13 +1,15 @@
 import browserHistory from "../browser-history";
 import {AuthorizationStatus, Url} from "../consts";
-import {addCard, authorization, authorizationFailed, changeCompliteStatus, changeLoadStatus, deleteCard, loadCards, redirectToRoute, signIn, updateCard} from "./actions";
+import {addCard, addProject, authorization, authorizationFailed, changeCompliteStatus, changeLoadStatus, deleteCard, loadCards, loadProjects, redirectToRoute, signIn, updateCard} from "./actions";
 
 const ApiRoute = {
   CARDS: `/todos`,
   COMPLITE: `/todos/complite`,
   EDIT: `/todos/edit`,
-  ADD: `/todos/add`,
+  ADD_CARD: `/todos/add`,
   DELETE: `/todos/delete`,
+  PROJECTS: `/projects`,
+  ADD_PROJECT: `/projects/add`,
   SIGN_IN: `/auth/signin`,
   LOGIN: `/auth/login`,
   LOGOUT: `/auth/logout`
@@ -17,6 +19,12 @@ export const fetchCards = () => (dispatch, _getState, api) =>
   api
     .get(ApiRoute.CARDS)
     .then(({data}) => dispatch(loadCards(data)))
+    .catch(() => {});
+
+export const fetchProjects = () => (dispatch, _getState, api) =>
+  api
+    .get(ApiRoute.PROJECTS)
+    .then(({data}) => dispatch(loadProjects(data)))
     .catch(() => {});
 
 export const fetchCompliteStatus = (id, status) => (dispatch, _getState, api) =>
@@ -35,9 +43,17 @@ export const editTextCard = (id, text) => (dispatch, _getState, api) =>
 
 export const fetchNewCard = (text) => (dispatch, _getState, api) =>
   api
-    .post(`${ApiRoute.ADD}`, {text})
+    .post(`${ApiRoute.ADD_CARD}`, {text})
     .then(({data}) => {
       dispatch(addCard(data));
+    })
+    .catch(() => {});
+
+export const fetchNewProject = (name) => (dispatch, _getState, api) =>
+  api
+    .post(`${ApiRoute.ADD_PROJECT}`, name)
+    .then(({data}) => {
+      dispatch(addProject(data));
     })
     .catch(() => {});
 

@@ -1,6 +1,19 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchProjects} from "../../store/api-actions";
+import {NameSpace} from "../../store/main-reducer";
 
 const Filters = () => {
+  const dispatch = useDispatch();
+  const projects = useSelector((state) => state[NameSpace.PROJECTS].projects);
+  const isLoaded = useSelector((state) => state[NameSpace.PROJECTS].isLoaded);
+
+  useEffect(() => {
+    if (!isLoaded) {
+      dispatch(fetchProjects());
+    }
+  }, [dispatch, isLoaded]);
+
   return (
     <section className="top__filters filters">
       <h2 className="visually-hidden">Фильтры</h2>
@@ -8,9 +21,9 @@ const Filters = () => {
         <label className="filters__item">
           <span className="visually-hidden">Проект</span>
           <select name="project" className="filters__input">
-            <option checked>Выберите проект</option>
-            <option>maffin.pw</option>
-            <option>amrita-dent</option>
+            {projects.map(({name, id}) => <option value={id} key={id}>{name}</option>)}
+            {/* <option>maffin.pw</option>
+            <option>amrita-dent</option> */}
           </select>
         </label>
         <label className="filters__item">
