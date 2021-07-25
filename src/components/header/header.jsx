@@ -9,6 +9,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const authorizationStatus = useSelector((state) => state[NameSpace.AUTH].authorizationStatus);
   const userName = useSelector((state) => state[NameSpace.AUTH].userName);
+
   return (
     <header className="header">
       <div className="header__logo logo">

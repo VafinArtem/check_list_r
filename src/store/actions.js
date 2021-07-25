@@ -2,8 +2,8 @@ import {createAction} from "@reduxjs/toolkit";
 
 export const ActionType = {
   LOAD_CARDS: `cards/loadCards`,
-  // CHANGE_LOAD_STATUS: `cards/changeLoadStatus`,
-  CHANGE_LOAD_STATUS: `projects/changeLoadStatus`,
+  CHANGE_LOAD_CARDS_STATUS: `cards/changeLoadStatus`,
+  CHANGE_LOAD_PROJECTS_STATUS: `projects/changeLoadStatus`,
   COMPLITE_CARD: `cards/compliteCards`,
   UPDATE_CARD: `cards/update`,
   ADD_CARD: `cards/add`,
@@ -32,5 +32,6 @@ export const resetMessage = createAction(ActionType.RESET_MESSAGE);
 export const authorization = createAction(ActionType.AUTHORIZATION, (action, email) => ({payload: {action, email}}));
 export const authorizationFailed = createAction(ActionType.AUTHORIZATION_FAIL, (error) => ({payload: error}));
 export const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url) => ({payload: url}));
-export const changeLoadStatus = createAction(ActionType.CHANGE_LOAD_STATUS);
+export const changeLoadProjectsStatus = createAction(ActionType.CHANGE_LOAD_PROJECTS_STATUS);
+export const changeLoadCardsStatus = createAction(ActionType.CHANGE_LOAD_CARDS_STATUS);
 export const setProject = createAction(ActionType.SET_PROJECT, (id) => ({payload: id}));

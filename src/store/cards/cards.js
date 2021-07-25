@@ -37,9 +37,9 @@ const cards = createReducer(initialState, (builder) => {
     const currentIndexCard = findCardIndex(state.cards, action.payload);
     state.cards.splice(currentIndexCard, 1);
   });
-  // builder.addCase(ActionType.CHANGE_LOAD_STATUS, (state) => {
-  //   state.isLoaded = false;
-  // });
+  builder.addCase(ActionType.CHANGE_LOAD_CARDS_STATUS, (state) => {
+    state.isLoaded = false;
+  });
 });
 
 export {cards};

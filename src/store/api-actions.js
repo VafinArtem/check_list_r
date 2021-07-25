@@ -1,6 +1,6 @@
 import browserHistory from "../browser-history";
 import {AuthorizationStatus, Url} from "../consts";
-import {addCard, addProject, authorization, authorizationFailed, changeCompliteStatus, changeLoadStatus, deleteCard, loadCards, loadProjects, redirectToRoute, setProject, signIn, updateCard} from "./actions";
+import {addCard, addProject, authorization, authorizationFailed, changeCompliteStatus, changeLoadCardsStatus, changeLoadProjectsStatus, deleteCard, loadCards, loadProjects, redirectToRoute, signIn, updateCard} from "./actions";
 
 const ApiRoute = {
   CARDS: `/todos`,
@@ -84,7 +84,8 @@ export const login = (userData) => (dispatch, _getState, api) => (
         dispatch(authorizationFailed(data.error));
       } else {
         dispatch(authorization(AuthorizationStatus.AUTH, userData.email));
-        dispatch(changeLoadStatus());
+        dispatch(changeLoadProjectsStatus());
+        dispatch(changeLoadCardsStatus());
         dispatch(redirectToRoute(Url.MAIN));
       }
     })
@@ -95,12 +96,13 @@ export const logout = () => (dispatch, _getState, api) => (
   api.get(ApiRoute.LOGOUT)
     .then(() => dispatch(authorization(AuthorizationStatus.NO_AUTH)))
     .then(() => {
-      dispatch(setProject(3));
-      dispatch(changeLoadStatus());
+      dispatch(changeLoadProjectsStatus());
+      dispatch(changeLoadCardsStatus());
       if (browserHistory.location.pathname !== Url.MAIN) {
         dispatch(redirectToRoute(Url.MAIN));
       }
     })
+    .catch(() => {})
 );
 
 export const checkLogin = () => (dispatch, _getState, api) => (

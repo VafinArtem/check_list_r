@@ -12,16 +12,22 @@ const CheckList = () => {
   const compliteCards = useSelector(selectCompliteCards);
   const notComplitedCards = useSelector(selectNotCompliteCards);
   const projectId = useSelector((state) => state[NameSpace.PROJECTS].currenProjectId);
-  // const isCardsLoaded = useSelector((state) => state[NameSpace.CARDS].isLoaded);
+  const isCardsLoaded = useSelector((state) => state[NameSpace.CARDS].isLoaded);
   const isProjectsLoaded = useSelector((state) => state[NameSpace.PROJECTS].isLoaded);
 
   useEffect(() => {
     if (!isProjectsLoaded) {
       dispatch(fetchProjects());
-    } else {
+    } else if (!isCardsLoaded) {
       dispatch(fetchCards(projectId));
     }
   }, [dispatch, isProjectsLoaded]);
+
+  useEffect(() => {
+    if (!isCardsLoaded && isProjectsLoaded) {
+      dispatch(fetchCards(projectId));
+    }
+  }, [dispatch, isCardsLoaded]);
 
   return (
     <section className="main__checklist checklist">

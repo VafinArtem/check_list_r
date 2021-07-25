@@ -35,5 +35,5 @@ export const ValidationMessages = {
   PASSWORD_LENGTH: `Минимальная длина пароля - ${MIN_PASSWORD_LENGTH} символов`,
   EMAIL_LENGTH: `Минимальная длина e-mail - ${MIN_EMAIL_LENGTH} символа`,
   WRONG_EMAIL: `Не правильный формат e-mail`,
-  MISMATCH_PASSWORDS: `Пароли не совпадают`
+  MISMATCH_PASSWORDS: `Пароли не совпадают`,
 };

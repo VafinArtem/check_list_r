@@ -1,7 +1,6 @@
 import React, {useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {setProject} from "../../store/actions";
-import {fetchCards} from "../../store/api-actions";
+import {changeLoadCardsStatus, setProject} from "../../store/actions";
 import {NameSpace} from "../../store/main-reducer";
 
 const Filters = () => {
@@ -23,7 +22,7 @@ const Filters = () => {
             value={projectId}
             onChange={() => {
               dispatch(setProject(projectRef.current.value));
-              dispatch(fetchCards(projectRef.current.value));
+              dispatch(changeLoadCardsStatus());
             }}>
             {projects.map(({name, id}) => <option value={id} key={id}>{name}</option>)}
           </select>

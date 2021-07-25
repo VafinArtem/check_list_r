@@ -7,8 +7,6 @@ const initialState = {
   currenProjectId: null
 };
 
-// const findCardIndex = (cards, id) => cards.findIndex((card) => card.id === id);
-
 const projects = createReducer(initialState, (builder) => {
   builder.addCase(ActionType.LOAD_PROJECTS, (state, action) => {
     state.projects = action.payload.projects;
@@ -21,7 +19,7 @@ const projects = createReducer(initialState, (builder) => {
   builder.addCase(ActionType.SET_PROJECT, (state, action) => {
     state.currenProjectId = action.payload;
   });
-  builder.addCase(ActionType.CHANGE_LOAD_STATUS, (state) => {
+  builder.addCase(ActionType.CHANGE_LOAD_PROJECTS_STATUS, (state) => {
     state.isLoaded = false;
   });
 });
