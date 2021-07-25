@@ -1,11 +1,13 @@
 import React, {useRef} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {setProject} from "../../store/actions";
+import {fetchCards} from "../../store/api-actions";
 import {NameSpace} from "../../store/main-reducer";
 
 const Filters = () => {
   const dispatch = useDispatch();
   const projects = useSelector((state) => state[NameSpace.PROJECTS].projects);
+  const projectId = useSelector((state) => state[NameSpace.PROJECTS].currenProjectId);
   const projectRef = useRef();
 
   return (
@@ -18,10 +20,12 @@ const Filters = () => {
             name="project"
             className="filters__input"
             ref={projectRef}
-            onChange={() => dispatch(setProject(projectRef.current.value))}>
+            value={projectId}
+            onChange={() => {
+              dispatch(setProject(projectRef.current.value));
+              dispatch(fetchCards(projectRef.current.value));
+            }}>
             {projects.map(({name, id}) => <option value={id} key={id}>{name}</option>)}
-            {/* <option>maffin.pw</option>
-            <option>amrita-dent</option> */}
           </select>
         </label>
         <label className="filters__item">

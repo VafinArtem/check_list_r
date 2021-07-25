@@ -2,7 +2,8 @@ import {createAction} from "@reduxjs/toolkit";
 
 export const ActionType = {
   LOAD_CARDS: `cards/loadCards`,
-  CHANGE_LOAD_STATUS: `cards/changeLoadStatus`,
+  // CHANGE_LOAD_STATUS: `cards/changeLoadStatus`,
+  CHANGE_LOAD_STATUS: `projects/changeLoadStatus`,
   COMPLITE_CARD: `cards/compliteCards`,
   UPDATE_CARD: `cards/update`,
   ADD_CARD: `cards/add`,
