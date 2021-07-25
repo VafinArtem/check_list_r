@@ -22,7 +22,14 @@ const NewElements = () => {
       {showToast ? <Toast message={toastMessage} type={ToastTypes.ERROR} show={showToast} setShow={setShowToast} hideTimer={3000} /> : ``}
       <h2 className="visually-hidden">Добавление элементов</h2>
       <div className="add-items__item">
-        <button className="add-items__button button" onClick={() => setShowAddProject(!showAddProject)}>
+        <button className="add-items__button button" onClick={() => {
+          if (authorizationStatus === AuthorizationStatus.AUTH) {
+            setShowAddProject(!showAddProject);
+          } else {
+            setToastMessage(`Добавление проекта доступно только после регистрации`);
+            setShowToast(true);
+          }
+        }}>
           <svg className="button__icon" width={15} height={12}>
             <use xlinkHref="img/sprite.svg#icon-project" />
           </svg>
