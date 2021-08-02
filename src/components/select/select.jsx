@@ -1,10 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import SelectItem from '../select-item/select-item';
 import PropTypes from 'prop-types';
 
 const Select = ({title, currentValue, currentName, items, changeLoadCardsStatus, setValue}) => {
   const dispatch = useDispatch();
+
+  const selectRef = useRef();
 
   const [showList, setShowList] = useState(false);
   const [currentItem, setCurrentItem] = useState(currentName);
@@ -18,8 +20,18 @@ const Select = ({title, currentValue, currentName, items, changeLoadCardsStatus,
     dispatch(changeLoadCardsStatus());
   }, [currentItem]);
 
+  useEffect(() => {
+    const onClick = (evt) => {
+      if (!selectRef.current.contains(evt.target)) {
+        setShowList(false);
+      }
+    };
+    document.addEventListener(`click`, onClick);
+    return () => document.removeEventListener(`click`, onClick);
+  }, []);
+
   return (
-    <div className="item__select select">
+    <div className="item__select select" ref={selectRef}>
       <h3 className="select__title">{title}</h3>
       <div className="select__wrapper">
         <div className="select__inner">
