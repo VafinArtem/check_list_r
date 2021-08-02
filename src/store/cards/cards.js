@@ -30,7 +30,7 @@ const cards = createReducer(initialState, (builder) => {
     state.isAddCard = action.payload;
   });
   builder.addCase(ActionType.ADD_CARD, (state, action) => {
-    state.cards.push(action.payload.card);
+    state.cards.push(action.payload);
     state.isAddCard = false;
   });
   builder.addCase(ActionType.DELETE_CARD, (state, action) => {

@@ -44,9 +44,7 @@ export const editTextCard = (id, text) => (dispatch, _getState, api) =>
 export const fetchNewCard = (text) => (dispatch, _getState, api) =>
   api
     .post(`${ApiRoute.ADD_CARD}`, {text})
-    .then(({data}) => {
-      dispatch(addCard(data));
-    })
+    .then(({data}) => dispatch(addCard(data.todo)))
     .catch(() => {});
 
 export const fetchNewProject = (name) => (dispatch, _getState, api) =>
