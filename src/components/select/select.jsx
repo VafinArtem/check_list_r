@@ -58,7 +58,7 @@ const Select = ({title, currentValue, currentName, items, changeLoadCardsStatus,
 
 Select.propTypes = {
   items: PropTypes.array.isRequired,
-  currentValue: PropTypes.number.isRequired,
+  currentValue: PropTypes.number,
   currentName: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   changeLoadCardsStatus: PropTypes.func.isRequired,

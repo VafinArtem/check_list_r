@@ -34,9 +34,8 @@ const CardControls = ({id, text, editCard, updatedText, setEditCard}) => {
 CardControls.propTypes = {
   id: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,
-  isComplite: PropTypes.bool.isRequired,
   editCard: PropTypes.bool.isRequired,
-  updatedText: PropTypes.bool.isRequired,
+  updatedText: PropTypes.string.isRequired,
   setEditCard: PropTypes.func.isRequired
 };
 
