@@ -47,7 +47,7 @@ const NewElements = () => {
           <button type="submit" className="add-items__confirm" aria-label="Подтвердить" />
         </form>
       </div>
-      <div className="add-items__item">
+      {/* <div className="add-items__item">
         <button className="add-items__button button">
           <svg className="button__icon" width={15} height={12}>
             <use xlinkHref="img/sprite.svg#icon-project" />
@@ -58,7 +58,7 @@ const NewElements = () => {
           <input type="text" className="add-items__input" name="new_cathegory" placeholder="Новая категория" />
           <button type="submit" className="add-items__confirm" aria-label="Подтвердить" />
         </form>
-      </div>
+      </div> */}
       <div className="add-items__item">
         <button className="add-items__button button" onClick={() => {
           if (authorizationStatus === AuthorizationStatus.AUTH) {

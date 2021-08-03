@@ -22,7 +22,7 @@ const Select = ({title, currentValue, currentName, items, changeLoadCardsStatus,
 
   useEffect(() => {
     const onClick = (evt) => {
-      if (!selectRef.current.contains(evt.target)) {
+      if (selectRef.current && !selectRef.current.contains(evt.target)) {
         setShowList(false);
       }
     };
