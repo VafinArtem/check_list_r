@@ -11,7 +11,6 @@ const Card = ({text, id, isComplite}) => {
   const authorizationStatus = useSelector((state) => state[NameSpace.AUTH].authorizationStatus);
 
   const [updatedText, setUpdatedText] = useState(text);
-  // const [fullText, setFullText] = useState(false);
   const [editCard, setEditCard] = useState(false);
 
   return (
