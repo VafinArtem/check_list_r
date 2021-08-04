@@ -1,7 +1,9 @@
 import React from "react";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {ListTypes} from "../../consts";
+import {AuthorizationStatus, ListTypes} from "../../consts";
+import {cardsMock} from "../../mocks/mocks";
+import {loadCards} from "../../store/actions";
 import {fetchCards, fetchProjects} from "../../store/api-actions";
 import {NameSpace} from "../../store/main-reducer";
 import {selectCompliteCards, selectNotCompliteCards} from "../../store/selectors/selectors";
@@ -10,6 +12,7 @@ import List from "../list/list";
 
 const CheckList = () => {
   const dispatch = useDispatch();
+  const authorizationStatus = useSelector((state) => state[NameSpace.AUTH].authorizationStatus);
   const compliteCards = useSelector(selectCompliteCards);
   const notComplitedCards = useSelector(selectNotCompliteCards);
   const projectId = useSelector((state) => state[NameSpace.PROJECTS].currenProjectId);
@@ -17,16 +20,22 @@ const CheckList = () => {
   const isProjectsLoaded = useSelector((state) => state[NameSpace.PROJECTS].isLoaded);
 
   useEffect(() => {
-    if (!isProjectsLoaded) {
-      dispatch(fetchProjects());
-    } else if (!isCardsLoaded) {
-      dispatch(fetchCards(projectId));
+    if (authorizationStatus === AuthorizationStatus.AUTH) {
+      if (!isProjectsLoaded) {
+        dispatch(fetchProjects());
+      } else if (!isCardsLoaded) {
+        dispatch(fetchCards(projectId));
+      }
     }
-  }, [dispatch, isProjectsLoaded]);
+  }, [dispatch, isProjectsLoaded, authorizationStatus]);
 
   useEffect(() => {
-    if (!isCardsLoaded && isProjectsLoaded) {
-      dispatch(fetchCards(projectId));
+    if (authorizationStatus === AuthorizationStatus.AUTH) {
+      if (!isCardsLoaded && isProjectsLoaded) {
+        dispatch(fetchCards(projectId));
+      }
+    } else {
+      dispatch(loadCards(cardsMock));
     }
   }, [dispatch, isCardsLoaded]);
 

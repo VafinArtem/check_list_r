@@ -27,16 +27,16 @@ const store = configureStore({
     }).concat(redirect),
 });
 
-store.dispatch(checkLogin());
-
-ReactDOM.render(
-    <Provider store={store}>
-      <BrowserRouter history={browserHistory}>
-        <App />
-      </BrowserRouter>
-    </Provider>,
-    document.querySelector(`#root`)
-);
+store.dispatch(checkLogin()).then(() => {
+  ReactDOM.render(
+      <Provider store={store}>
+        <BrowserRouter history={browserHistory}>
+          <App />
+        </BrowserRouter>
+      </Provider>,
+      document.querySelector(`#root`)
+  );
+});
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
