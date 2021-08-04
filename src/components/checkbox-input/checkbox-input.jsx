@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import {useDispatch} from "react-redux";
-import {MAX_SYMBOLS} from "../../consts";
-import {limitDescription} from "../../utils/common";
 import {fetchCompliteStatus} from "../../store/api-actions";
 
-const CheckboxInput = ({text, fullText, id, isComplite}) => {
+const CheckboxInput = ({text, id, isComplite}) => {
   const dispatch = useDispatch();
 
   return (
@@ -19,7 +17,7 @@ const CheckboxInput = ({text, fullText, id, isComplite}) => {
       />
       <span className="checklist__check-box" />
       <span className="checklist__name">
-        {fullText ? text : limitDescription(text, MAX_SYMBOLS)}
+        {text}
       </span>
     </label>
   );
@@ -29,7 +27,6 @@ CheckboxInput.propTypes = {
   id: PropTypes.number.isRequired,
   isComplite: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired,
-  fullText: PropTypes.bool.isRequired
 };
 
 export default CheckboxInput;
