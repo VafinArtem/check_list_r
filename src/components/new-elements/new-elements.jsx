@@ -22,7 +22,7 @@ const NewElements = () => {
       {showToast ? <Toast message={toastMessage} type={ToastTypes.ERROR} show={showToast} setShow={setShowToast} hideTimer={3000} /> : ``}
       <h2 className="visually-hidden">Добавление элементов</h2>
       <div className="add-items__item">
-        <button className="add-items__button button" onClick={() => {
+        <button className="add-items__button button button--menu" onClick={() => {
           if (authorizationStatus === AuthorizationStatus.AUTH) {
             setShowAddProject(!showAddProject);
           } else {
@@ -30,8 +30,8 @@ const NewElements = () => {
             setShowToast(true);
           }
         }}>
-          <svg className="button__icon" width={15} height={12}>
-            <use xlinkHref="img/sprite.svg#icon-project" />
+          <svg className="button__icon" width={20} height={17}>
+            <use xlinkHref="img/sprite.svg#icon-add" />
           </svg>
           <span className="button__text">Проект</span>
         </button>
@@ -60,7 +60,7 @@ const NewElements = () => {
         </form>
       </div> */}
       <div className="add-items__item">
-        <button className="add-items__button button" onClick={() => {
+        <button className="add-items__button button button--menu" onClick={() => {
           if (authorizationStatus === AuthorizationStatus.AUTH) {
             dispatch(changeAddCardStatus(!isAddCard));
           } else {
@@ -68,8 +68,8 @@ const NewElements = () => {
             setShowToast(true);
           }
         }}>
-          <svg className="button__icon" width={13} height={14}>
-            <use xlinkHref="img/sprite.svg#icon-card" />
+          <svg className="button__icon" width={20} height={17}>
+            <use xlinkHref="img/sprite.svg#icon-add" />
           </svg>
           <span className="button__text">Карточка</span>
         </button>
