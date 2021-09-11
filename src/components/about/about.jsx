@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const About = ({setShowAbout}) => {
+const About = ({setShowAbout, showAbout}) => {
   return (
-    <div className="about-popup">
+    <div className={`about-popup ${showAbout ? `about-popup--show` : ``}`}>
       <h2 className="about-popup__title">О проекте</h2>
       <p className="about-popup__text">
         Этот проект создан frontend-разработчиком, для прокачки скилов и решении проблемы с проверкой своих проектов по определенным
@@ -27,6 +27,7 @@ const About = ({setShowAbout}) => {
 
 About.propTypes = {
   setShowAbout: PropTypes.func.isRequired,
+  showAbout: PropTypes.bool.isRequired
 };
 
 export default About;

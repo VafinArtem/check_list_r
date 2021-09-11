@@ -1,15 +1,20 @@
-import React from "react";
-import PropTypes from 'prop-types';
+import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import {AuthorizationStatus, Url} from "../../consts";
 import {logout} from "../../store/api-actions";
 import {NameSpace} from "../../store/main-reducer";
+import About from "../about/about";
 
-const Header = ({setShowAbout}) => {
+const Header = () => {
+  const [showAbout, setShowAbout] = useState(false);
   const dispatch = useDispatch();
   const authorizationStatus = useSelector((state) => state[NameSpace.AUTH].authorizationStatus);
   const userName = useSelector((state) => state[NameSpace.AUTH].userName);
+
+  if (!showAbout && !localStorage.confirmAbout) {
+    setShowAbout(true);
+  }
 
   return (
     <header className="header">
@@ -34,12 +39,9 @@ const Header = ({setShowAbout}) => {
           <use xlinkHref="img/sprite.svg#icon-question" />
         </svg>
       </button>
+      <About setShowAbout={setShowAbout} showAbout={showAbout} />
     </header>
   );
-};
-
-Header.propTypes = {
-  setShowAbout: PropTypes.func.isRequired,
 };
 
 export default Header;
