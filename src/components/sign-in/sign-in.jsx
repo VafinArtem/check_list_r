@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {MIN_PASSWORD_LENGTH, RegularExp, ToastTypes, ValidationMessages} from "../../consts";
+import {AuthTab, MIN_PASSWORD_LENGTH, RegularExp, ToastTypes, ValidationMessages} from "../../consts";
 import {resetMessage} from "../../store/actions";
 import {newUser} from "../../store/api-actions";
 import {NameSpace} from "../../store/main-reducer";
@@ -12,6 +12,7 @@ const SignIn = () => {
   const showErrorAuthorizationMessage = useSelector((state) => state[NameSpace.AUTH].showErrorAuthorizationMessage);
   const authorizationMessage = useSelector((state) => state[NameSpace.AUTH].authorizationMessage);
   const showSuccesAuthorizationMessage = useSelector((state) => state[NameSpace.AUTH].showSuccesAuthorizationMessage);
+  const activeTab = useSelector((state) => state[NameSpace.AUTH].activeTab);
 
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState(``);
@@ -83,7 +84,7 @@ const SignIn = () => {
   }, [showSuccesAuthorizationMessage]);
 
   return (
-    <div className="login__wrapper">
+    <div className={`login__wrapper ${activeTab === AuthTab.SIGN_IN ? `login__wrapper--active` : ``}`}>
       {showToast ? <Toast message={toastMessage} type={toastType} show={showToast} setShow={setShowToast} hideTimer={3000} /> : ``}
       <h2 className="login__title">Регистрация</h2>
       <form action="/" className="login__form" onSubmit={handleSubmit} noValidate>

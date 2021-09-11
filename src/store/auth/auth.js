@@ -1,5 +1,5 @@
 import {createReducer} from "@reduxjs/toolkit";
-import {AuthorizationStatus} from "../../consts";
+import {AuthorizationStatus, AuthTab} from "../../consts";
 import {ActionType} from "../actions";
 
 const initialState = {
@@ -8,6 +8,7 @@ const initialState = {
   showErrorAuthorizationMessage: false,
   showSuccesAuthorizationMessage: false,
   authorizationMessage: ``,
+  activeTab: AuthTab.LOGIN,
 };
 
 const auth = createReducer(initialState, (builder) => {
@@ -27,6 +28,9 @@ const auth = createReducer(initialState, (builder) => {
   builder.addCase(ActionType.RESET_MESSAGE, (state) => {
     state.showErrorAuthorizationMessage = false;
     state.showSuccesAuthorizationMessage = false;
+  });
+  builder.addCase(ActionType.CHANGE_AUTH_TAB, (state, {payload}) => {
+    state.activeTab = payload;
   });
 });
 

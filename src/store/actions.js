@@ -16,7 +16,8 @@ export const ActionType = {
   RESET_MESSAGE: `auth/resetMessage`,
   SIGN_IN: `auth/signIn`,
   AUTHORIZATION: `auth/auth`,
-  AUTHORIZATION_FAIL: `auth/authFail`
+  AUTHORIZATION_FAIL: `auth/authFail`,
+  CHANGE_AUTH_TAB: `auth/chenageTab`
 };
 
 export const loadCards = createAction(ActionType.LOAD_CARDS, (cards) => ({payload: cards}));
@@ -35,3 +36,4 @@ export const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url) 
 export const changeLoadProjectsStatus = createAction(ActionType.CHANGE_LOAD_PROJECTS_STATUS);
 export const changeLoadCardsStatus = createAction(ActionType.CHANGE_LOAD_CARDS_STATUS);
 export const setProject = createAction(ActionType.SET_PROJECT, (id) => ({payload: id}));
+export const changeAuthTab = createAction(ActionType.CHANGE_AUTH_TAB, (tab) => ({payload: tab}));

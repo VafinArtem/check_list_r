@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {MIN_PASSWORD_LENGTH, RegularExp, ToastTypes, ValidationMessages} from "../../consts";
+import {AuthTab, MIN_PASSWORD_LENGTH, RegularExp, ToastTypes, ValidationMessages} from "../../consts";
 import {resetMessage} from "../../store/actions";
 import {login} from "../../store/api-actions";
 import {NameSpace} from "../../store/main-reducer";
@@ -11,6 +11,7 @@ const LogIn = () => {
 
   const showErrorAuthorizationMessage = useSelector((state) => state[NameSpace.AUTH].showErrorAuthorizationMessage);
   const authorizationMessage = useSelector((state) => state[NameSpace.AUTH].authorizationMessage);
+  const activeTab = useSelector((state) => state[NameSpace.AUTH].activeTab);
 
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState(``);
@@ -65,7 +66,7 @@ const LogIn = () => {
   }, [showErrorAuthorizationMessage]);
 
   return (
-    <div className="login__wrapper login__wrapper--active">
+    <div className={`login__wrapper ${activeTab === AuthTab.LOGIN ? `login__wrapper--active` : ``}`}>
       {showToast ? <Toast message={toastMessage} type={toastType} show={showToast} setShow={setShowToast} hideTimer={3000} /> : ``}
       <h2 className="login__title">Авторизация</h2>
       <form action="/" className="login__form" onSubmit={handleSubmit}>

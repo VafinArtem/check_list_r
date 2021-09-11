@@ -37,3 +37,8 @@ export const ValidationMessages = {
   WRONG_EMAIL: `Не правильный формат e-mail`,
   MISMATCH_PASSWORDS: `Пароли не совпадают`,
 };
+
+export const AuthTab = {
+  LOGIN: `LOGIN`,
+  SIGN_IN: `SIGN_IN`
+};
