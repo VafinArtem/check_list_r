@@ -1,12 +1,10 @@
-/* eslint-disable quotes */
 import React, {useState} from "react";
 import About from "../about/about";
 import CheckList from "../checklist/checklist";
 import Filters from "../filters/filters";
 import NewElements from "../new-elements/new-elements";
 
-const Main = () => {
-  const [showAbout, setShowAbout] = useState(false);
+const Main = ({showAbout, setShowAbout}) => {
 
   if (!showAbout && !localStorage.confirmAbout) {
     setShowAbout(true);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {Switch, Route} from 'react-router-dom';
 import {Url} from "../../consts";
 import Auth from "../auth/auth";
@@ -8,12 +8,14 @@ import Main from '../main/main';
 import NotFoundPage from "../not-found-page/not-found-page";
 
 const App = () => {
+  const [showAbout, setShowAbout] = useState(false);
+
   return (
     <React.Fragment>
-      <Header />
+      <Header setShowAbout={setShowAbout} />
       <Switch>
         <Route exact path={Url.MAIN}>
-          <Main />
+          <Main showAbout={showAbout} setShowAbout={setShowAbout} />
         </Route>
         <Route exact path={Url.LOG_IN} render={() => <Auth />}>
         </Route>
