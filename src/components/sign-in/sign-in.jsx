@@ -23,8 +23,8 @@ const SignIn = () => {
     emailLength: false,
     emailRegExp: false,
   });
-  // const [showMessage, setShowMessage] = useState(false);
 
+  const formRef = useRef();
   const loginRef = useRef();
   const passwordRef = useRef();
   const rePasswordRef = useRef();
@@ -41,11 +41,11 @@ const SignIn = () => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     if (validate.passwordlength && validate.passwordMatch && validate.emailRegExp && validate.emailLength) {
-      const regData = {
+      dispatch(newUser({
         email: loginRef.current.value,
         password: passwordRef.current.value,
-      };
-      dispatch(newUser(regData));
+      }));
+      formRef.current.reset();
     } else if (!validate.emailLength) {
       setToastMessage(ValidationMessages.EMAIL_LENGTH);
       setToastType(ToastTypes.ERROR);
