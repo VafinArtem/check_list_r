@@ -17,6 +17,7 @@ const projects = createReducer(initialState, (builder) => {
   });
   builder.addCase(ActionType.ADD_PROJECT, (state, action) => {
     state.projects.push(action.payload.project);
+    state.currenProjectName = action.payload.project.name;
   });
   builder.addCase(ActionType.SET_PROJECT, (state, action) => {
     state.currenProjectId = parseInt(action.payload, 10);

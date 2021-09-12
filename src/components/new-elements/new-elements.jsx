@@ -42,6 +42,8 @@ const NewElements = () => {
             dispatch(fetchNewProject({
               name: projectRef.current.value
             }));
+            projectRef.current.value = ``;
+            setShowAddProject(!showAddProject);
           }} >
           <input type="text" className="add-items__input" name="new_project" placeholder="Новый проект" ref={projectRef} />
           <button type="submit" className="add-items__confirm" aria-label="Подтвердить" />
