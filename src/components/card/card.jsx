@@ -6,6 +6,7 @@ import TextareaInput from "../textarea-input/textarea-input";
 import CardControls from "../card-controls/card-controls";
 import {NameSpace} from "../../store/main-reducer";
 import {useSelector} from "react-redux";
+import classNames from "classnames";
 
 const Card = ({text, id, isComplite}) => {
   const authorizationStatus = useSelector((state) => state[NameSpace.AUTH].authorizationStatus);
@@ -14,8 +15,12 @@ const Card = ({text, id, isComplite}) => {
   const [editCard, setEditCard] = useState(false);
 
   return (
-    <li className={`checklist__item ${isComplite ? `checklist__item--complite` : ``}`}>
-      <div className={`checklist__inner ${isComplite ? `checklist__inner--complite` : ``}`}>
+    <li className={classNames(`checklist__item`, {
+      [`checklist__item--complite`]: isComplite
+    })}>
+      <div className={classNames(`checklist__inner`, {
+        [`checklist__inner--complite`]: isComplite
+      })}>
         {authorizationStatus === AuthorizationStatus.AUTH ? <CardControls
           editCard={editCard}
           updatedText={updatedText}

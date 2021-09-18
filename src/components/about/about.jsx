@@ -1,9 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 const About = ({setShowAbout, showAbout}) => {
   return (
-    <div className={`about-popup ${showAbout ? `about-popup--show` : ``}`}>
+    <div className={classNames(`about-popup`, {
+      [`about-popup--show`]: showAbout
+    })}>
       <h2 className="about-popup__title">О проекте</h2>
       <p className="about-popup__text">
         Этот проект создан frontend-разработчиком, для прокачки скилов и решении проблемы с проверкой своих проектов по определенным
