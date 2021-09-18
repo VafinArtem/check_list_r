@@ -1363,6 +1363,8 @@ a {
   font-size: 16px;
   border: 1px solid #000000;
   cursor: pointer;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .select__input::after {
@@ -1418,11 +1420,11 @@ a {
 
 .select__item {
   position: relative;
-  padding-top: 16px;
-  padding-bottom: 16px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   padding-right: 38px;
-  padding-left: 19px;
-  font-size: 16px;
+  padding-left: 11px;
+  font-size: 14px;
   cursor: pointer;
 }
 
