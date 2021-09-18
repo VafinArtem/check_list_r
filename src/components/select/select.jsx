@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import SelectItem from '../select-item/select-item';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 const Select = ({title, currentValue, currentName, items, changeLoadCardsStatus, setValue}) => {
   const dispatch = useDispatch();
@@ -36,7 +37,9 @@ const Select = ({title, currentValue, currentName, items, changeLoadCardsStatus,
       <div className="select__wrapper">
         <div className="select__inner">
           <p className="select__input" aria-label="Выберите проект" tabIndex={0} onClick={() => setShowList(!showList)}>{currentItem}</p>
-          <ul className={`select__list ${showList ? `show` : ``}`}>
+          <ul className={classNames(`select__list`, {
+            [`show`]: showList
+          })}>
             {items.map(
                 ({name, id}) =>
                   <SelectItem

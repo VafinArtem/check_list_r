@@ -4,6 +4,7 @@ import TextareaInput from "../textarea-input/textarea-input";
 import {changeAddCardStatus} from "../../store/actions";
 import {NameSpace} from "../../store/main-reducer";
 import {fetchNewCard} from "../../store/api-actions";
+import ControlButton from "../control-button/control-button";
 
 const NewCard = () => {
   const dispatch = useDispatch();
@@ -15,20 +16,8 @@ const NewCard = () => {
     <li className={`checklist__item`}>
       <div className={`checklist__inner`}>
         <div className="checklist__controls">
-          <button
-            className="checklist__control  checklist__control--save"
-            aria-label="Редактировать"
-            onClick={() => {
-              dispatch(fetchNewCard(updatedText));
-            }}
-          />
-          <button
-            className="checklist__control checklist__control--delete"
-            aria-label="Удалить"
-            onClick={() => {
-              dispatch(changeAddCardStatus(!isAddCard));
-            }}
-          />
+          <ControlButton title={`Редактировать`} editCard={true} handleClick={() => dispatch(fetchNewCard(updatedText))} />
+          <ControlButton title={`Удалить`} deleteCard={true} handleClick={() => dispatch(changeAddCardStatus(!isAddCard))} />
         </div>
         <TextareaInput
           setUpdatedText={setUpdatedText}

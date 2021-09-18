@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch} from 'react-redux';
+import classNames from 'classnames';
 
 const SelectItem = ({name, value, currentValue, setCurrentItem, setValue, setShowList}) => {
   const dispatch = useDispatch();
 
   return (
-    <li className={`select__item ${value === currentValue ? `select__item--active` : ``}`} tabIndex={0} data-value={value} onClick={() => {
+    <li className={classNames(`select__item`, {
+      [`select__item--active`]: value === currentValue
+    })} tabIndex={0} data-value={value} onClick={() => {
       if (value !== currentValue) {
         dispatch(setValue(value));
         setCurrentItem(name);

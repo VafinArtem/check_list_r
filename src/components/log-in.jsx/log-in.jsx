@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import React, {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {AuthTab, MIN_PASSWORD_LENGTH, RegularExp, ToastTypes, ValidationMessages} from "../../consts";
@@ -66,7 +67,9 @@ const LogIn = () => {
   }, [showErrorAuthorizationMessage]);
 
   return (
-    <div className={`login__wrapper ${activeTab === AuthTab.LOGIN ? `login__wrapper--active` : ``}`}>
+    <div className={classNames(`login__wrapper`, {
+      [`login__wrapper--active`]: activeTab === AuthTab.LOGIN
+    })}>
       {showToast ? <Toast message={toastMessage} type={toastType} show={showToast} setShow={setShowToast} hideTimer={3000} /> : ``}
       <h2 className="login__title">Авторизация</h2>
       <form action="/" className="login__form" onSubmit={handleSubmit}>
