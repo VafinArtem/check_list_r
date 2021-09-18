@@ -90,7 +90,7 @@ const SignIn = () => {
     })}>
       {showToast ? <Toast message={toastMessage} type={toastType} show={showToast} setShow={setShowToast} hideTimer={3000} /> : ``}
       <h2 className="login__title">Регистрация</h2>
-      <form action="/" className="login__form" onSubmit={handleSubmit} noValidate>
+      <form action="/" ref={formRef} className="login__form" onSubmit={handleSubmit} noValidate>
         <label className="login__input-wrapper">
           <span className="visually-hidden">Введите e-mail</span>
           <input ref={loginRef} type="email" name="email" className={`login__input`} placeholder="Введите e-mail" onInput={handleInput} />
