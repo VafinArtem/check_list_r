@@ -16,6 +16,7 @@ const CheckList = () => {
   const compliteCards = useSelector(selectCompliteCards);
   const notComplitedCards = useSelector(selectNotCompliteCards);
   const projectId = useSelector((state) => state[NameSpace.PROJECTS].currenProjectId);
+  const projectName = useSelector((state) => state[NameSpace.PROJECTS].currenProjectName);
   const isCardsLoaded = useSelector((state) => state[NameSpace.CARDS].isLoaded);
   const isProjectsLoaded = useSelector((state) => state[NameSpace.PROJECTS].isLoaded);
 
@@ -41,7 +42,7 @@ const CheckList = () => {
 
   return (
     <section className="main__checklist checklist">
-      <h2 className="checklist__title visually-hidden">Проект: maffin.pw</h2>
+      <h2 className="checklist__title visually-hidden">Проект: {projectName}</h2>
       {!notComplitedCards.length && compliteCards.length ? <Complite /> : `` }
       <List title={ListTypes.IN_PROCESS} cards={notComplitedCards} type={ListTypes.IN_PROCESS} />
       <List title={ListTypes.IS_READY} cards={compliteCards} />
