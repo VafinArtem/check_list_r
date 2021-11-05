@@ -6,6 +6,7 @@ import NewCard from "../new-card/new-card";
 import {CARDS_PROP} from "../../utils/validate";
 import {NameSpace} from "../../store/main-reducer";
 import {ListTypes} from "../../consts";
+import classNames from "classnames";
 
 const List = ({title, cards}) => {
   const memoCards = useMemo(() => cards, [cards]);
@@ -16,15 +17,18 @@ const List = ({title, cards}) => {
   }
 
   return (
-    <React.Fragment>
-      <h3 className="visually-hidden">{title}</h3>
+    <div className="checklist__container">
+      <h3 className={classNames(`checklist__subtitle`, {
+        [`checklist__subtitle--in-process`]: title === ListTypes.IN_PROCESS,
+        [`checklist__subtitle--ready`]: title === ListTypes.IS_READY,
+      })}>{title}</h3>
       <ul className="checklist__list">
         {isAddCard && title === ListTypes.IN_PROCESS ? <NewCard /> : ``}
         {memoCards.map(({id, text, isComplite}) => {
           return <Card key={id} id={id} text={text} isComplite={isComplite} />;
         })}
       </ul>
-    </React.Fragment>
+    </div>
   );
 };
 
