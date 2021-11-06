@@ -5,6 +5,7 @@ import {AuthTab, MIN_PASSWORD_LENGTH, RegularExp, ToastTypes, ValidationMessages
 import {resetMessage} from "../../store/actions";
 import {newUser} from "../../store/api-actions";
 import {NameSpace} from "../../store/main-reducer";
+import LoginInput from "../loginInput/input";
 import Toast from "../toast/toast";
 
 const SignIn = () => {
@@ -30,17 +31,16 @@ const SignIn = () => {
   const passwordRef = useRef();
   const rePasswordRef = useRef();
 
-  const handleInput = () => {
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+
     setValidate({
       passwordlength: passwordRef.current.value.length >= MIN_PASSWORD_LENGTH,
       passwordMatch: passwordRef.current.value === rePasswordRef.current.value,
       emailLength: loginRef.current.value.length !== 0,
       emailRegExp: loginRef.current.value.match(RegularExp.EMAIL) !== null,
     });
-  };
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
     if (validate.passwordlength && validate.passwordMatch && validate.emailRegExp && validate.emailLength) {
       dispatch(newUser({
         email: loginRef.current.value,
@@ -91,24 +91,24 @@ const SignIn = () => {
       {showToast ? <Toast message={toastMessage} type={toastType} show={showToast} setShow={setShowToast} hideTimer={3000} /> : ``}
       <h2 className="login__title">Регистрация</h2>
       <form action="/" ref={formRef} className="login__form" onSubmit={handleSubmit} noValidate>
-        <label className="login__input-wrapper">
-          <span className="visually-hidden">Введите e-mail</span>
-          <input ref={loginRef} type="email" name="email" className={`login__input`} placeholder="Введите e-mail" onInput={handleInput} />
-          {/* <input ref={loginRef} type="email" name="email" className={`login__input ${!validEmail && showMessage ? `login__input--error` : ``}`} placeholder="Введите e-mail" onInput={handleEmailInput} /> */}
-          {/* {!validEmail && showMessage ? <span className="login__message login__message--error">{ValidationMessages.WRONG_EMAIL}</span> : `` } */}
-        </label>
-        <label className="login__input-wrapper">
-          <span className="visually-hidden">Введите пароль</span>
-          <input ref={passwordRef} type="password" name="password" className={`login__input`} placeholder="Введите пароль" onInput={handleInput} />
-          {/* <input ref={passwordRef} type="password" name="password" className={`login__input ${validPassword.length && showMessage ? `login__input--error` : ``}`} placeholder="Введите пароль" onInput={handlePasswordInput} /> */}
-          {/* {validPassword.length && showMessage ? <span className="login__message login__message--error">{ValidationMessages.PASSWORD_LENGTH}</span> : ``} */}
-        </label>
-        <label className="login__input-wrapper">
-          <span className="visually-hidden">Подтвердите пароль</span>
-          <input ref={rePasswordRef} type="password" name="repassword" className={`login__input`} placeholder="Подтвердите пароль" onInput={handleInput} />
-          {/* <input ref={rePasswordRef} type="password" name="repassword" className={`login__input ${validPassword.match && showMessage ? `login__input--error` : ``}`} placeholder="Подтвердите пароль" onInput={handlePasswordInput} /> */}
-          {/* {validPassword.match && showMessage ? <span className="login__message login__message--error">{ValidationMessages.MISMATCH_PASSWORDS}</span> : ``} */}
-        </label>
+        <LoginInput
+          ref={loginRef}
+          title={`Введите e-mail`}
+          type={`email`}
+          placeholder={`Введите e-mail`}
+        />
+        <LoginInput
+          ref={passwordRef}
+          title={`Введите пароль`}
+          type={`password`}
+          placeholder={`Введите пароль`}
+        />
+        <LoginInput
+          ref={rePasswordRef}
+          title={`Подтвердите пароль`}
+          type={`password`}
+          placeholder={`Подтвердите пароль`}
+        />
         <button className="login__sunbmit button button--form">Регистрация</button>
       </form>
     </div>

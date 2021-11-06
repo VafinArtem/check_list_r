@@ -5,6 +5,7 @@ import {AuthTab, MIN_PASSWORD_LENGTH, RegularExp, ToastTypes, ValidationMessages
 import {resetMessage} from "../../store/actions";
 import {login} from "../../store/api-actions";
 import {NameSpace} from "../../store/main-reducer";
+import LoginInput from "../loginInput/input";
 import Toast from "../toast/toast";
 
 const LogIn = () => {
@@ -26,16 +27,14 @@ const LogIn = () => {
   const loginRef = useRef();
   const passwordRef = useRef();
 
-  const handleInput = () => {
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+
     setValidate({
       passwordLength: passwordRef.current.value.length >= MIN_PASSWORD_LENGTH,
       emailLength: loginRef.current.value.length !== 0,
       emailRegExp: loginRef.current.value.match(RegularExp.EMAIL) !== null,
     });
-  };
-
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
 
     if (validate.passwordLength && validate.emailRegExp && validate.emailLength) {
       dispatch(login({
@@ -73,14 +72,18 @@ const LogIn = () => {
       {showToast ? <Toast message={toastMessage} type={toastType} show={showToast} setShow={setShowToast} hideTimer={3000} /> : ``}
       <h2 className="login__title">Авторизация</h2>
       <form action="/" className="login__form" onSubmit={handleSubmit}>
-        <label className="login__input-wrapper">
-          <span className="visually-hidden">Введите e-mail</span>
-          <input ref={loginRef} type="email" name="email" className="login__input" placeholder="Введите e-mail" onInput={handleInput} />
-        </label>
-        <label className="login__input-wrapper">
-          <span className="visually-hidden">Введите пароль</span>
-          <input ref={passwordRef} type="password" name="password" className="login__input" placeholder="Введите пароль" onInput={handleInput} />
-        </label>
+        <LoginInput
+          ref={loginRef}
+          title={`Введите e-mail`}
+          type={`email`}
+          placeholder={`Введите e-mail`}
+        />
+        <LoginInput
+          ref={passwordRef}
+          title={`Введите пароль`}
+          type={`password`}
+          placeholder={`Введите пароль`}
+        />
         <button className="login__sunbmit button button--form">Войти</button>
       </form>
     </div>
