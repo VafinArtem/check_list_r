@@ -1,6 +1,6 @@
 import React from "react";
 import AuthTabs from "../auth-tabs/auth-tabs";
-import LogIn from "../log-in.jsx/log-in";
+import LogIn from "../log-in/log-in";
 import SignIn from "../sign-in/sign-in";
 
 const Auth = () => {

@@ -2,7 +2,8 @@ export const Url = {
   MAIN: `/`,
   LOG_IN: `/login`,
   LOG_OUT: `/logout`,
-  NOT_FOUND: `/404`
+  NOT_FOUND: `/404`,
+  RESTORE: `/restore`
 };
 
 export const ListTypes = {

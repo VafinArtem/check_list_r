@@ -1,7 +1,8 @@
 import classNames from "classnames";
 import React, {useEffect, useRef, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {AuthTab, MIN_PASSWORD_LENGTH, RegularExp, ToastTypes, ValidationMessages} from "../../consts";
+import {Link} from "react-router-dom";
+import {AuthTab, MIN_PASSWORD_LENGTH, RegularExp, ToastTypes, Url, ValidationMessages} from "../../consts";
 import {resetMessage} from "../../store/actions";
 import {login} from "../../store/api-actions";
 import {NameSpace} from "../../store/main-reducer";
@@ -85,6 +86,7 @@ const LogIn = () => {
           placeholder={`Введите пароль`}
         />
         <button className="login__sunbmit button button--form">Войти</button>
+        <Link to={Url.RESTORE} className="login__restore">Забыли пароль?</Link>
       </form>
     </div>
   );
