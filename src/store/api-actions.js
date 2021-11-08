@@ -1,6 +1,6 @@
 import browserHistory from "../browser-history";
 import {AuthorizationStatus, Url} from "../consts";
-import {addCard, addProject, authorization, authorizationFailed, changeCompliteStatus, changeLoadCardsStatus, changeLoadProjectsStatus, deleteCard, loadCards, loadProjects, redirectToRoute, signIn, updateCard} from "./actions";
+import {addCard, addProject, authorization, authorizationFailed, changeCompliteStatus, changeLoadCardsStatus, changeLoadProjectsStatus, deleteCard, loadCards, loadProjects, redirectToRoute, restoreFailed, signIn, updateCard} from "./actions";
 
 const ApiRoute = {
   CARDS: `/todos`,
@@ -12,7 +12,9 @@ const ApiRoute = {
   ADD_PROJECT: `/projects/add`,
   SIGN_IN: `/auth/signin`,
   LOGIN: `/auth/login`,
-  LOGOUT: `/auth/logout`
+  LOGOUT: `/auth/logout`,
+  RESTORE: `/auth/restore`,
+  NEW_PASSWORD: `/auth/new-password`
 };
 
 export const fetchCards = (projectId) => (dispatch, _getState, api) =>
@@ -85,6 +87,30 @@ export const login = (userData) => (dispatch, _getState, api) => (
         dispatch(changeLoadProjectsStatus());
         dispatch(changeLoadCardsStatus());
         dispatch(redirectToRoute(Url.MAIN));
+      }
+    })
+    .catch(() => {})
+);
+
+export const restore = (userData) => (dispatch, _getState, api) => (
+  api.post(ApiRoute.RESTORE, userData)
+    .then(({data}) => {
+      if (data.error) {
+        dispatch(restoreFailed(data.error));
+      } else {
+        // TODO: Выводим сообщение о том что письмо о восстановлении отправленно на почту
+      }
+    })
+    .catch(() => {})
+);
+
+export const newPassword = (userData) => (dispatch, _getState, api) => (
+  api.post(ApiRoute.NEW_PASSWORD, userData)
+    .then(({data}) => {
+      if (data.error) {
+        dispatch(restoreFailed(data.error));
+      } else {
+        dispatch(redirectToRoute(Url.LOG_IN));
       }
     })
     .catch(() => {})

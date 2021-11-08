@@ -17,11 +17,16 @@ const App = () => {
         <Route exact path={Url.MAIN}>
           <Main />
         </Route>
-        <Route exact path={Url.LOG_IN}>
-          <Auth />
+        <Route exact path={Url.LOG_IN} render={() => <Auth />}>
         </Route>
-        <Route exact path={Url.RESTORE}>
-          <Restore />
+        <Route exact path={Url.RESTORE} render={() => <Restore />}>
+        </Route>
+        <Route exact path={Url.NEW_PASSWORD} render={({match}) => {
+          const token = match.params.token;
+          return <Restore
+            token={token}
+          />;
+        }}>
         </Route>
         <Route exact path={Url.NOT_FOUND}>
           <NotFoundPage />

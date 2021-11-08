@@ -3,7 +3,8 @@ export const Url = {
   LOG_IN: `/login`,
   LOG_OUT: `/logout`,
   NOT_FOUND: `/404`,
-  RESTORE: `/restore`
+  RESTORE: `/restore`,
+  NEW_PASSWORD: `/restore/:token`
 };
 
 export const ListTypes = {

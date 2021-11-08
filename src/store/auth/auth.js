@@ -16,7 +16,6 @@ const auth = createReducer(initialState, (builder) => {
     state.showSuccesAuthorizationMessage = true;
     state.authorizationMessage = payload;
   });
-
   builder.addCase(ActionType.AUTHORIZATION, (state, {payload}) => {
     state.authorizationStatus = payload.action;
     state.userName = payload.email;
@@ -28,6 +27,10 @@ const auth = createReducer(initialState, (builder) => {
   builder.addCase(ActionType.RESET_MESSAGE, (state) => {
     state.showErrorAuthorizationMessage = false;
     state.showSuccesAuthorizationMessage = false;
+  });
+  builder.addCase(ActionType.RESTORE, (state, {payload}) => {
+    state.showErrorAuthorizationMessage = true;
+    state.authorizationMessage = payload;
   });
   builder.addCase(ActionType.CHANGE_AUTH_TAB, (state, {payload}) => {
     state.activeTab = payload;
