@@ -6,6 +6,7 @@ import Footer from "../footer/footer";
 import Header from "../header/header";
 import Main from '../main/main';
 import NotFoundPage from "../not-found-page/not-found-page";
+import Restore from "../restore/restore";
 
 const App = () => {
 
@@ -16,7 +17,11 @@ const App = () => {
         <Route exact path={Url.MAIN}>
           <Main />
         </Route>
-        <Route exact path={Url.LOG_IN} render={() => <Auth />}>
+        <Route exact path={Url.LOG_IN}>
+          <Auth />
+        </Route>
+        <Route exact path={Url.RESTORE}>
+          <Restore />
         </Route>
         <Route exact path={Url.NOT_FOUND}>
           <NotFoundPage />
