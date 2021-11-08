@@ -964,7 +964,7 @@ a {
   width: 100%;
   height: 100%;
   padding-top: 10px;
-  padding-left: 10px;
+  padding-left: 15px;
   padding-bottom: 10px;
   padding-right: 13px;
   background-color: #ffffff;
@@ -1001,11 +1001,12 @@ a {
   right: 10px;
   top: 10px;
   display: flex;
+  align-items: baseline;
 }
 
 .checklist__control {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   padding: 0;
   border: none;
   background-color: transparent;
@@ -1020,17 +1021,17 @@ a {
 }
 
 .checklist__control--edit {
-  background-image: url("data:image/svg+xml,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 13'%3E%3Cpath d='M12 11.313H.5a.5.5 0 00-.5.5v.562c0 .069.056.125.125.125h12.25a.125.125 0 00.125-.125v-.563a.5.5 0 00-.5-.5zM2.277 10a.633.633 0 00.093-.008l2.628-.46a.153.153 0 00.083-.044l6.624-6.624a.155.155 0 00.034-.17.155.155 0 00-.034-.05L9.108.045A.155.155 0 008.997 0a.155.155 0 00-.111.045L2.263 6.67a.159.159 0 00-.044.083L1.758 9.38a.523.523 0 00.147.465.53.53 0 00.372.155z' fill='%23000'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 13'%3E%3Cpath d='M11.657 1.344a2 2 0 010 2.828L4.27 11.559a2.5 2.5 0 01-1.161.657l-2.291.573a.5.5 0 01-.606-.607l.572-2.29a2.5 2.5 0 01.658-1.162l7.386-7.386a2 2 0 012.829 0zm-3.536 2.12L2.15 9.438a1.5 1.5 0 00-.394.697l-.371 1.483 1.482-.371a1.5 1.5 0 00.697-.395L9.536 4.88 8.122 3.466l-.001-.002zm1.415-1.413l-.708.707 1.414 1.414.708-.707a1 1 0 00-1.414-1.414z' fill='%23000'/%3E%3C/svg%3E");
 }
 
 .checklist__control--delete {
   width: 15px;
   height: 16px;
-  background-image: url("data:image/svg+xml,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 13'%3E%3Cpath d='M11.5 2.25h-2V1a1 1 0 00-1-1h-5a1 1 0 00-1 1v1.25h-2a.5.5 0 00-.5.5v.5c0 .069.056.125.125.125h.944l.386 8.172a1 1 0 00.998.953h7.094a.999.999 0 00.998-.953l.386-8.172h.944A.125.125 0 0012 3.25v-.5a.5.5 0 00-.5-.5zm-3.125 0h-4.75V1.125h4.75V2.25z' fill='%23000'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 21'%3E%3Cpath d='M10 .75a3.25 3.25 0 013.245 3.066L13.25 4h5.25a.75.75 0 01.102 1.493L18.5 5.5h-.796l-1.28 13.02a2.75 2.75 0 01-2.561 2.474l-.176.006H6.313a2.75 2.75 0 01-2.714-2.307l-.023-.174L2.295 5.5H1.5a.75.75 0 01-.743-.648L.75 4.75a.75.75 0 01.648-.743L1.5 4h5.25A3.25 3.25 0 0110 .75zm6.197 4.75H3.802l1.267 12.872a1.25 1.25 0 001.117 1.122l.127.006h7.374c.6 0 1.109-.425 1.225-1.002l.02-.126L16.196 5.5h.001zM11.75 8.25a.75.75 0 01.743.648L12.5 9v7a.75.75 0 01-1.493.102L11 16V9a.75.75 0 01.75-.75zm-3.5 0a.75.75 0 01.743.648L9 9v7a.75.75 0 01-1.493.102L7.5 16V9a.75.75 0 01.75-.75zm1.75-6a1.75 1.75 0 00-1.744 1.606L8.25 4h3.5A1.75 1.75 0 0010 2.25z' fill='%23000'/%3E%3C/svg%3E");
 }
 
 .checklist__control--save {
-  background-image: url("data:image/svg+xml,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 13'%3E%3Cpath d='M12.208 2.833L9.668.293A1 1 0 008.958 0H.5a.5.5 0 00-.5.5V12a.5.5 0 00.5.5H12a.5.5 0 00.5-.5V3.54a.997.997 0 00-.292-.707zM4.25 1h4v1.75h-4V1zm2 8.656a2.25 2.25 0 11.001-4.5 2.25 2.25 0 01-.001 4.5zm0-3.5a1.25 1.25 0 100 2.5 1.25 1.25 0 000-2.5z' fill='%23000'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg fill='none' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 1a1 1 0 00-1 1v8a1 1 0 001 1V7.5A1.5 1.5 0 013.5 6h5A1.5 1.5 0 0110 7.5V11a1 1 0 001-1V3.62a1 1 0 00-.293-.707L9.086 1.292A1 1 0 008.379 1H8v1.5A1.5 1.5 0 016.5 4h-2A1.5 1.5 0 013 2.5V1H2zm2 0v1.5a.5.5 0 00.5.5h2a.5.5 0 00.5-.5V1H4zm5 10V7.5a.5.5 0 00-.5-.5h-5a.5.5 0 00-.5.5V11h6zM0 2a2 2 0 012-2h6.379a2 2 0 011.414.586l1.621 1.621A2 2 0 0112 3.621V10a2 2 0 01-2 2H2a2 2 0 01-2-2V2z' fill='%23000'/%3E%3C/svg%3E");
 }
 
 .checklist__box {
@@ -1086,6 +1087,7 @@ a {
   width: 100%;
   height: 100%;
   font-family: inherit;
+  line-height: 1.4;
   border: 1px solid #bbbbbb;
   resize: none;
 }
@@ -1217,6 +1219,11 @@ a {
   }
 }
 
+.login__form {
+  display: flex;
+  flex-direction: column;
+}
+
 .login__title {
   margin-top: 0;
   margin-bottom: 43px;
@@ -1304,12 +1311,24 @@ a {
   }
 }
 
+.login__restore {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #000000;
+}
+
+.login__restore:hover,
+.login__restore:focus {
+  color: #008272;
+}
+
 .footer {
   display: flex;
   align-items: center;
-  min-height: 64px;
   padding-left: 15px;
   padding-right: 15px;
+  padding-top: 7px;
+  padding-bottom: 7px;
   background-color: #f2f8fb;
 }
 
