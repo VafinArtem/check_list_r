@@ -4,7 +4,7 @@ export const Url = {
   LOG_OUT: `/logout`,
   NOT_FOUND: `/404`,
   RESTORE: `/restore`,
-  NEW_PASSWORD: `/restore/:token`
+  NEW_PASSWORD: `/new-password/:token`
 };
 
 export const ListTypes = {

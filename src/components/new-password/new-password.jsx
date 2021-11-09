@@ -2,11 +2,11 @@ import React, {useRef, useState} from "react";
 import PropTypes from 'prop-types';
 import {useDispatch} from "react-redux";
 import {MIN_PASSWORD_LENGTH, ToastTypes, ValidationMessages} from "../../consts";
-import {login, newPassword} from "../../store/api-actions";
+import {newPassword} from "../../store/api-actions";
 import LoginInput from "../loginInput/input";
 import Toast from "../toast/toast";
 
-const Restore = ({token}) => {
+const NewPassword = ({token}) => {
   const dispatch = useDispatch();
 
   const [showToast, setShowToast] = useState(false);
@@ -20,13 +20,13 @@ const Restore = ({token}) => {
   const passwordRef = useRef();
   const rePasswordRef = useRef();
 
+  const handleInput = () => setValidate({
+    passwordlength: passwordRef.current.value.length >= MIN_PASSWORD_LENGTH,
+    passwordMatch: passwordRef.current.value === rePasswordRef.current.value,
+  });
+
   const handleSubmit = (evt) => {
     evt.preventDefault();
-
-    setValidate({
-      passwordlength: passwordRef.current.value.length >= MIN_PASSWORD_LENGTH,
-      passwordMatch: passwordRef.current.value === rePasswordRef.current.value,
-    });
 
     if (validate.passwordlength && validate.passwordMatch) {
       dispatch(newPassword({
@@ -43,16 +43,6 @@ const Restore = ({token}) => {
       setShowToast(true);
     }
   };
-
-  // TODO: Добавить сообщение о том что не существует e-mail
-  // useEffect(() => {
-  //   if (showErrorAuthorizationMessage) {
-  //     setToastMessage(authorizationMessage);
-  //     setToastType(ToastTypes.ERROR);
-  //     setShowToast(true);
-  //     dispatch(resetMessage());
-  //   }
-  // }, [showErrorAuthorizationMessage]);
   return (
     <React.Fragment>
       <main className="main main--login">
@@ -67,12 +57,14 @@ const Restore = ({token}) => {
                   title={`Введите пароль`}
                   type={`password`}
                   placeholder={`Введите пароль`}
+                  handleInput={handleInput}
                 />
                 <LoginInput
                   ref={rePasswordRef}
                   title={`Подтвердите пароль`}
                   type={`password`}
                   placeholder={`Подтвердите пароль`}
+                  handleInput={handleInput}
                 />
                 <button className="login__sunbmit button button--form">Изменить пароль</button>
               </form>
@@ -84,8 +76,8 @@ const Restore = ({token}) => {
   );
 };
 
-Restore.propTypes = {
+NewPassword.propTypes = {
   token: PropTypes.string.isRequired,
 };
 
-export default Restore;
+export default NewPassword;

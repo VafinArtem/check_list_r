@@ -1,7 +1,7 @@
 import React, {useRef, useState} from "react";
 import {useDispatch} from "react-redux";
 import {RegularExp, ToastTypes, ValidationMessages} from "../../consts";
-import {login} from "../../store/api-actions";
+import {restorePassword} from "../../store/api-actions";
 import LoginInput from "../loginInput/input";
 import Toast from "../toast/toast";
 
@@ -18,16 +18,18 @@ const Restore = () => {
 
   const loginRef = useRef();
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-
+  const handleInput = () => {
     setValidate({
       emailLength: loginRef.current.value.length !== 0,
       emailRegExp: loginRef.current.value.match(RegularExp.EMAIL) !== null,
     });
+  };
 
-    if (validate.passwordLength && validate.emailRegExp && validate.emailLength) {
-      dispatch(login({
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+
+    if (validate.emailRegExp && validate.emailLength) {
+      dispatch(restorePassword({
         email: loginRef.current.value,
       }));
     } else if (!validate.emailLength) {
@@ -36,10 +38,6 @@ const Restore = () => {
       setShowToast(true);
     } else if (!validate.emailRegExp) {
       setToastMessage(ValidationMessages.WRONG_EMAIL);
-      setToastType(ToastTypes.ERROR);
-      setShowToast(true);
-    } else if (!validate.passwordLength) {
-      setToastMessage(ValidationMessages.PASSWORD_LENGTH);
       setToastType(ToastTypes.ERROR);
       setShowToast(true);
     }
@@ -68,6 +66,7 @@ const Restore = () => {
                   title={`Введите e-mail`}
                   type={`email`}
                   placeholder={`Введите e-mail`}
+                  handleInput={handleInput}
                 />
                 <button className="login__sunbmit button button--form">Восстановить</button>
               </form>

@@ -31,15 +31,17 @@ const SignIn = () => {
   const passwordRef = useRef();
   const rePasswordRef = useRef();
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-
+  const handleInput = () => {
     setValidate({
       passwordlength: passwordRef.current.value.length >= MIN_PASSWORD_LENGTH,
       passwordMatch: passwordRef.current.value === rePasswordRef.current.value,
       emailLength: loginRef.current.value.length !== 0,
       emailRegExp: loginRef.current.value.match(RegularExp.EMAIL) !== null,
     });
+  };
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
 
     if (validate.passwordlength && validate.passwordMatch && validate.emailRegExp && validate.emailLength) {
       dispatch(newUser({
@@ -96,18 +98,21 @@ const SignIn = () => {
           title={`Введите e-mail`}
           type={`email`}
           placeholder={`Введите e-mail`}
+          handleInput={handleInput}
         />
         <LoginInput
           ref={passwordRef}
           title={`Введите пароль`}
           type={`password`}
           placeholder={`Введите пароль`}
+          handleInput={handleInput}
         />
         <LoginInput
           ref={rePasswordRef}
           title={`Подтвердите пароль`}
           type={`password`}
           placeholder={`Подтвердите пароль`}
+          handleInput={handleInput}
         />
         <button className="login__sunbmit button button--form">Регистрация</button>
       </form>

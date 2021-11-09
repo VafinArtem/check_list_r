@@ -5,6 +5,7 @@ import Auth from "../auth/auth";
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import Main from '../main/main';
+import NewPassword from "../new-password/new-password";
 import NotFoundPage from "../not-found-page/not-found-page";
 import Restore from "../restore/restore";
 
@@ -21,9 +22,9 @@ const App = () => {
         </Route>
         <Route exact path={Url.RESTORE} render={() => <Restore />}>
         </Route>
-        <Route exact path={Url.NEW_PASSWORD} render={({match}) => {
+        <Route path={Url.NEW_PASSWORD} render={({match}) => {
           const token = match.params.token;
-          return <Restore
+          return <NewPassword
             token={token}
           />;
         }}>

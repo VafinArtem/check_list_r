@@ -92,7 +92,7 @@ export const login = (userData) => (dispatch, _getState, api) => (
     .catch(() => {})
 );
 
-export const restore = (userData) => (dispatch, _getState, api) => (
+export const restorePassword = (userData) => (dispatch, _getState, api) => (
   api.post(ApiRoute.RESTORE, userData)
     .then(({data}) => {
       if (data.error) {
