@@ -1,12 +1,18 @@
-import React, {useRef, useState} from "react";
-import {useDispatch} from "react-redux";
+import React, {useEffect, useRef, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {RegularExp, ToastTypes, ValidationMessages} from "../../consts";
 import {restorePassword} from "../../store/api-actions";
+import {NameSpace} from "../../store/main-reducer";
+import {resetMessage} from "../../store/actions";
 import LoginInput from "../loginInput/input";
 import Toast from "../toast/toast";
 
 const Restore = () => {
   const dispatch = useDispatch();
+
+  const showErrorAuthorizationMessage = useSelector((state) => state[NameSpace.AUTH].showErrorAuthorizationMessage);
+  const showSuccesAuthorizationMessage = useSelector((state) => state[NameSpace.AUTH].showSuccesAuthorizationMessage);
+  const authorizationMessage = useSelector((state) => state[NameSpace.AUTH].authorizationMessage);
 
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState(``);
@@ -43,15 +49,24 @@ const Restore = () => {
     }
   };
 
-  // TODO: Добавить сообщение о том что не существует e-mail
-  // useEffect(() => {
-  //   if (showErrorAuthorizationMessage) {
-  //     setToastMessage(authorizationMessage);
-  //     setToastType(ToastTypes.ERROR);
-  //     setShowToast(true);
-  //     dispatch(resetMessage());
-  //   }
-  // }, [showErrorAuthorizationMessage]);
+  useEffect(() => {
+    if (showErrorAuthorizationMessage) {
+      setToastMessage(authorizationMessage);
+      setToastType(ToastTypes.ERROR);
+      setShowToast(true);
+      dispatch(resetMessage());
+    }
+  }, [showErrorAuthorizationMessage]);
+
+  useEffect(() => {
+    if (showSuccesAuthorizationMessage) {
+      setToastMessage(authorizationMessage);
+      setToastType(ToastTypes.SUCCES);
+      setShowToast(true);
+      dispatch(resetMessage());
+    }
+  }, [showSuccesAuthorizationMessage]);
+
   return (
     <React.Fragment>
       <main className="main main--login">

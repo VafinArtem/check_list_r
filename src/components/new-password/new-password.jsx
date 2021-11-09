@@ -1,13 +1,18 @@
-import React, {useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import PropTypes from 'prop-types';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {MIN_PASSWORD_LENGTH, ToastTypes, ValidationMessages} from "../../consts";
 import {newPassword} from "../../store/api-actions";
 import LoginInput from "../loginInput/input";
 import Toast from "../toast/toast";
+import {resetMessage} from "../../store/actions";
+import {NameSpace} from "../../store/main-reducer";
 
 const NewPassword = ({token}) => {
   const dispatch = useDispatch();
+
+  const showErrorAuthorizationMessage = useSelector((state) => state[NameSpace.AUTH].showErrorAuthorizationMessage);
+  const authorizationMessage = useSelector((state) => state[NameSpace.AUTH].authorizationMessage);
 
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState(``);
@@ -43,6 +48,16 @@ const NewPassword = ({token}) => {
       setShowToast(true);
     }
   };
+
+  useEffect(() => {
+    if (showErrorAuthorizationMessage) {
+      setToastMessage(authorizationMessage);
+      setToastType(ToastTypes.ERROR);
+      setShowToast(true);
+      dispatch(resetMessage());
+    }
+  }, [showErrorAuthorizationMessage]);
+
   return (
     <React.Fragment>
       <main className="main main--login">

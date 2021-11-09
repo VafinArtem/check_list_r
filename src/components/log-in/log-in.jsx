@@ -38,7 +38,6 @@ const LogIn = () => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    // test@test.ru
 
     if (validate.passwordLength && validate.emailRegExp && validate.emailLength) {
       dispatch(login({

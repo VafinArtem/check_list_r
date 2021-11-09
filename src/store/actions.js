@@ -18,6 +18,7 @@ export const ActionType = {
   RESTORE: `auth/restore`,
   AUTHORIZATION: `auth/auth`,
   AUTHORIZATION_FAIL: `auth/authFail`,
+  AUTHORIZATION_SUCCES: `auth/authSucces`,
   RESTORE_FAIL: `auth/restoreFail`,
   CHANGE_AUTH_TAB: `auth/chenageTab`
 };
@@ -33,9 +34,8 @@ export const deleteCard = createAction(ActionType.DELETE_CARD, (id) => ({payload
 export const signIn = createAction(ActionType.SIGN_IN, (answer) => ({payload: answer}));
 export const resetMessage = createAction(ActionType.RESET_MESSAGE);
 export const authorization = createAction(ActionType.AUTHORIZATION, (action, email) => ({payload: {action, email}}));
-// export const restore = createAction(ActionType.AUTHORIZATION, (action, email) => ({payload: {action, email}}));
 export const authorizationFailed = createAction(ActionType.AUTHORIZATION_FAIL, (error) => ({payload: error}));
-export const restoreFailed = createAction(ActionType.AUTHORIZATION_FAIL, (error) => ({payload: error}));
+export const authorizationSucces = createAction(ActionType.AUTHORIZATION_SUCCES, (succes) => ({payload: succes}));
 export const redirectToRoute = createAction(ActionType.REDIRECT_TO_ROUTE, (url) => ({payload: url}));
 export const changeLoadProjectsStatus = createAction(ActionType.CHANGE_LOAD_PROJECTS_STATUS);
 export const changeLoadCardsStatus = createAction(ActionType.CHANGE_LOAD_CARDS_STATUS);

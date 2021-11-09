@@ -1,6 +1,6 @@
 import browserHistory from "../browser-history";
 import {AuthorizationStatus, Url} from "../consts";
-import {addCard, addProject, authorization, authorizationFailed, changeCompliteStatus, changeLoadCardsStatus, changeLoadProjectsStatus, deleteCard, loadCards, loadProjects, redirectToRoute, restoreFailed, signIn, updateCard} from "./actions";
+import {addCard, addProject, authorization, authorizationFailed, authorizationSucces, changeCompliteStatus, changeLoadCardsStatus, changeLoadProjectsStatus, deleteCard, loadCards, loadProjects, redirectToRoute, signIn, updateCard} from "./actions";
 
 const ApiRoute = {
   CARDS: `/todos`,
@@ -96,9 +96,9 @@ export const restorePassword = (userData) => (dispatch, _getState, api) => (
   api.post(ApiRoute.RESTORE, userData)
     .then(({data}) => {
       if (data.error) {
-        dispatch(restoreFailed(data.error));
+        dispatch(authorizationFailed(data.error));
       } else {
-        // TODO: Выводим сообщение о том что письмо о восстановлении отправленно на почту
+        dispatch(authorizationSucces(data.succes));
       }
     })
     .catch(() => {})
@@ -108,7 +108,7 @@ export const newPassword = (userData) => (dispatch, _getState, api) => (
   api.post(ApiRoute.NEW_PASSWORD, userData)
     .then(({data}) => {
       if (data.error) {
-        dispatch(restoreFailed(data.error));
+        dispatch(authorizationFailed(data.error));
       } else {
         dispatch(redirectToRoute(Url.LOG_IN));
       }
