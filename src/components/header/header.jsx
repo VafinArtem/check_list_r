@@ -20,7 +20,7 @@ const Header = () => {
     <header className="header">
       <div className="header__logo logo">
         <Link to={Url.MAIN} className="logo__link">
-          <img src="img/common/logo.svg" alt="Maffin Check List" width={166} height={34} className="logo__img" />
+          <img src="/img/common/logo.svg" alt="Maffin Check List" width={166} height={34} className="logo__img" />
         </Link>
       </div>
       <Link to={Url.LOG_IN} className="header__auth" aria-label="Login / Logout" onClick={(evt) => {
@@ -31,12 +31,12 @@ const Header = () => {
       }}>
         {authorizationStatus === AuthorizationStatus.AUTH ? <span className="header__auth-text">{userName}</span> : ``}
         <svg className="header__icon" width={20} height={20}>
-          <use xlinkHref="img/sprite.svg#icon-login" />
+          <use xlinkHref="/img/sprite.svg#icon-login" />
         </svg>
       </Link>
       <button className="header__about" aria-label="О проекте" onClick={() => setShowAbout(true)}>
         <svg className="header__icon" width={20} height={20}>
-          <use xlinkHref="img/sprite.svg#icon-question" />
+          <use xlinkHref="/img/sprite.svg#icon-question" />
         </svg>
       </button>
       <About setShowAbout={setShowAbout} showAbout={showAbout} />

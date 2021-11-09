@@ -31,7 +31,7 @@ const NewElements = () => {
           }
         }}>
           <svg className="button__icon" width={20} height={17}>
-            <use xlinkHref="img/sprite.svg#icon-add" />
+            <use xlinkHref="/img/sprite.svg#icon-add" />
           </svg>
           <span className="button__text">Проект</span>
         </button>
@@ -52,7 +52,7 @@ const NewElements = () => {
       {/* <div className="add-items__item">
         <button className="add-items__button button">
           <svg className="button__icon" width={15} height={12}>
-            <use xlinkHref="img/sprite.svg#icon-project" />
+            <use xlinkHref="/img/sprite.svg#icon-project" />
           </svg>
           <span className="button__text">Категория</span>
         </button>
@@ -71,7 +71,7 @@ const NewElements = () => {
           }
         }}>
           <svg className="button__icon" width={20} height={17}>
-            <use xlinkHref="img/sprite.svg#icon-add" />
+            <use xlinkHref="/img/sprite.svg#icon-add" />
           </svg>
           <span className="button__text">Карточка</span>
         </button>
